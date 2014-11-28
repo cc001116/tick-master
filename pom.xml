@@ -21,40 +21,6 @@
 		<name>flower 4</name>
 	</organization>
 
-	<developers>
-		<developer>
-			<id>chen</id>
-			<name>陈诚</name>
-			<email>cc001116@126.com</email>
-		</developer>
-
-		<developer>
-			<id>fan</id>
-			<name>范清文</name>
-			<email></email>
-			<url></url>
-		</developer>
-
-		<developer>
-			<id>xiaofu</id>
-			<name>付兴华</name>
-			<email></email>
-			<url></url>
-		</developer>
-
-		<developer>
-			<id>song</id>
-			<name>宋烈金</name>
-			<email></email>
-			<url></url>
-		</developer>
-	</developers>
-
-	<scm>
-		<connection></connection>
-		<developerConnection></developerConnection>
-	</scm>
-
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
@@ -63,9 +29,8 @@
 		<java.target.version>1.7</java.target.version>
 
 		<!-- 数据库 -->
-		<database.url>jdbc:mysql://127.0.0.1:3306/tick_mysql</database.url>
-		<database.user>root</database.user>
-		<database.password>root</database.password>
+		<!-- <database.url>jdbc:mysql://127.0.0.1:3306/tick_mysql</database.url> 
+			<database.user>root</database.user> <database.password>root</database.password> -->
 
 		<hibernate.showsql>true</hibernate.showsql>
 
@@ -86,7 +51,7 @@
 				<database.password>root</database.password>
 			</properties>
 		</profile>
-
+		
 	</profiles>
 
 	<dependencyManagement>
@@ -173,7 +138,7 @@
 				<artifactId>spring-asm</artifactId>
 				<version>${spring.version}</version>
 			</dependency>
-			
+
 			<dependency>
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-test</artifactId>
@@ -198,8 +163,7 @@
 				<groupId>org.hibernate</groupId>
 				<artifactId>hibernate-core</artifactId>
 				<version>4.2.16.Final</version>
-<!-- 				<version>4.3.7.Final</version>
- -->
+				<!-- <version>4.3.7.Final</version> -->
 			</dependency>
 
 			<dependency>
@@ -319,6 +283,20 @@
 
 	<build>
 
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
+
+		<testResources>
+			<testResource>
+				<directory>src/test/resources</directory>
+				<filtering>true</filtering>
+			</testResource>
+		</testResources>
+		
 		<pluginManagement>
 			<plugins>
 				<plugin>
@@ -326,7 +304,7 @@
 					<artifactId>maven-resources-plugin</artifactId>
 					<version>2.7</version>
 					<configuration>
-						<escapeString>\</escapeString>
+						<encoding>UTF-8</encoding>
 					</configuration>
 				</plugin>
 
@@ -344,7 +322,6 @@
 		</pluginManagement>
 
 	</build>
-
 
 </project>
 
