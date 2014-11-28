@@ -29,9 +29,9 @@
 		<java.target.version>1.7</java.target.version>
 
 		<!-- 数据库 -->
-		<!-- <database.url>jdbc:mysql://127.0.0.1:3306/tick_mysql</database.url> 
-			<database.user>root</database.user> <database.password>root</database.password> -->
-
+		<!-- <database.url>jdbc:mysql://127.0.0.1:3306/tick_mysql</database.url>
+		<database.user>root</database.user>
+		<database.password>password</database.password> -->
 		<hibernate.showsql>true</hibernate.showsql>
 
 		<!-- web-root -->
@@ -46,12 +46,34 @@
 		<profile>
 			<id>chen</id>
 			<properties>
-				<database.url>jdbc:mysql:127.0.0.1:3306/tick_mysql</database.url>
+				<database.url>jdbc:mysql://127.0.0.1:3306/tick_mysql</database.url>
 				<database.user>root</database.user>
 				<database.password>root</database.password>
+				<!-- 数据库方言 -->
+				<!-- MySQL -->
+				<hibernate.dialect>org.hibernate.dialect.MySQL5InnoDBDialect</hibernate.dialect>
+				<!-- 
+					其它常用方言
+					MySQL  org.hibernate.dialect.MySQLDialect  
+					MySQL with InnoDB  org.hibernate.dialect.MySQLInnoDBDialect  
+					MySQL with MyISAM  org.hibernate.dialect.MySQLMyISAMDialect  
+					Oracle (any version)  org.hibernate.dialect.OracleDialect  
+					Oracle 9i/10g  org.hibernate.dialect.Oracle9Dialect 
+					Microsoft SQL Server  org.hibernate.dialect.SQLServerDialect   
+				 -->
 			</properties>
 		</profile>
 		
+		<profile>
+			<id>song</id>
+			<properties>
+				<database.url>jdbc:mysql://127.0.0.1:3306/tick_mysql</database.url>
+				<database.user>root</database.user>
+				<database.password>root</database.password>
+				<hibernate.dialect>org.hibernate.dialect.MySQL5InnoDBDialect</hibernate.dialect>
+			</properties>
+		</profile>
+
 	</profiles>
 
 	<dependencyManagement>
@@ -296,7 +318,7 @@
 				<filtering>true</filtering>
 			</testResource>
 		</testResources>
-		
+
 		<pluginManagement>
 			<plugins>
 				<plugin>

@@ -22,7 +22,7 @@ public class TestService {
 	@Test
 	public void register() {
 		User user = new User();
-		user.setUsername("ttttttt");
+		user.setUsername("vvvv");
 		userService.register(user);
 		System.out.println(user.getId());
 	}
