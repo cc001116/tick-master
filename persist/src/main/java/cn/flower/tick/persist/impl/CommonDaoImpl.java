@@ -36,13 +36,14 @@ public abstract class CommonDaoImpl<T> implements ICommonDao<T> {
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	private Class getActualType() {
 		Type superType = this.getClass().getGenericSuperclass();
-		
-		if(superType instanceof Class) {
+
+		if (superType instanceof Class) {
 			superType = ((Class) superType).getGenericSuperclass();
 		}
-		
-		if(superType instanceof ParameterizedType) {
-			return (Class<T>) ((ParameterizedType) superType).getActualTypeArguments()[0];
+
+		if (superType instanceof ParameterizedType) {
+			return (Class<T>) ((ParameterizedType) superType)
+					.getActualTypeArguments()[0];
 		} else {
 			return null;
 		}

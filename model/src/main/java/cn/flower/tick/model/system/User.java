@@ -2,6 +2,7 @@ package cn.flower.tick.model.system;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 
 import cn.flower.tick.model.BaseModel;
@@ -18,6 +19,7 @@ public class User extends BaseModel {
 	private String password;
 	private Date registerDate;
 
+	@Column(unique = true, nullable = false)
 	public String getUsername() {
 		return username;
 	}
