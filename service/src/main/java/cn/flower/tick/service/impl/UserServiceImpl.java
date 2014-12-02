@@ -14,7 +14,7 @@ import cn.flower.tick.persist.IUserDao;
 import cn.flower.tick.service.IUserService;
 
 @Transactional(readOnly = true)
-@Service("userServiceImpl")
+@Service("userService")
 public class UserServiceImpl implements IUserService{
 	
 	@Autowired
