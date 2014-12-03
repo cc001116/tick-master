@@ -14,6 +14,7 @@
 		<module>service</module>
 		<module>web</module>
 		<module>client</module>
+		<module>filter</module>
 	</modules>
 
 
@@ -120,6 +121,11 @@
 				<version>0.0.1-SNAPSHOT</version>
 			</dependency>
 
+			<dependency>
+				<groupId>cn.flower.tick</groupId>
+				<artifactId>tick-filter</artifactId>
+				<version>0.0.1-SNAPSHOT</version>
+			</dependency>
 
 			<dependency>
 				<groupId>junit</groupId>

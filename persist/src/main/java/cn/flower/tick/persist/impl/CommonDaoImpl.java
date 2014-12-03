@@ -8,6 +8,8 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.persistence.Table;
+
 import org.hibernate.Query;
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
@@ -53,6 +55,24 @@ public abstract class CommonDaoImpl<T> implements ICommonDao<T> {
 		return this.sessionFactory.getCurrentSession();
 	}
 
+	/**
+	 *  获取表名（注解方式配表名时特殊处理）
+	 * @return
+	 */
+	private String getTableName() {
+		String tableName = null;
+		@SuppressWarnings("unchecked")
+		Table table = (Table) entityClass.getAnnotation(Table.class);
+		if(table != null && table.name() != null)  {
+			tableName = table.name();
+		} else {
+			tableName = entityClass.getSimpleName();
+		}
+		return tableName;
+	}
+	
+	
+	
 	/**
 	 * 保存一个实体；
 	 * 
@@ -162,8 +182,8 @@ public abstract class CommonDaoImpl<T> implements ICommonDao<T> {
 
 	private String createSql(String whereSql,
 			LinkedHashMap<String, String> orderMap) {
-		String baseSql = "SELECT o FROM " + entityClass.getSimpleName()
-				+ " o WHERE 1=1 ";
+		String baseSql = "SELECT o FROM " +  entityClass.getSimpleName()
+				+ " o ";
 		String orderBy = this.orderBy(orderMap);// 组织排序的条件
 		return new StringBuffer(60).append(baseSql)
 				.append(whereSql == null ? "" : whereSql).append(orderBy)

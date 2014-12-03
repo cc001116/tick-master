@@ -22,7 +22,8 @@ public class TestService {
 	@Test
 	public void register() {
 		User user = new User();
-		user.setUsername("vvvvvv");
+		user.setUsername("user");
+		user.setPassword("1234");
 		userService.register(user);
 		System.out.println(user.getId());
 	}

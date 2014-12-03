@@ -19,6 +19,13 @@
   <!-- <mvc:resources mapping="/static/**" location="/public/" />
   <mvc:resources mapping="/favicon.ico" location="/favicon.ico" /> -->
   
+  <mvc:annotation-driven>
+  	<mvc:message-converters>
+  		<bean class="org.springframework.http.convert.json.MappingJacksonHttpMessageConverter" />
+  	</mvc:message-converters>
+  </mvc:annotation-driven>
+  
+  
   <context:component-scan base-package="cn.flower.*"
     use-default-filters="false">
     <context:include-filter expression="org.springframework.stereotype.Controller"
@@ -44,6 +51,7 @@
         <entry key="html" value="text/html" />
       </map>
     </property>
+    
     <property name="defaultViews">
       <list>
         <bean

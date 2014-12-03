@@ -53,8 +53,8 @@ public class UserServiceImpl implements IUserService{
 
 	@Override
 	public User query(String username) {
-		String sql = "SELECT * FROM user WHERE username = ?";
-		return this.userDao.findObjectBySql(sql, username);
+		String hql = "WHERE o.username = ?";
+		return this.userDao.findObjectByHql(hql, username);
 	}
 
 	

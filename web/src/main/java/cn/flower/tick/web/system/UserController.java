@@ -20,19 +20,20 @@ public class UserController extends BaseController {
 	@Autowired
 	private IUserService userService;
 	
-	@RequestMapping(method = RequestMethod.POST, value = "/register")
+	@RequestMapping(/*method = RequestMethod.POST,*/ value = "/register")
 	public String Register(@ModelAttribute("user") User user) {
 		userService.register(user);
 		return "user/register";
 	}
 	
-	@RequestMapping(method = RequestMethod.POST, value = "/login/{username}")
+	@RequestMapping(/*method = RequestMethod.POST, */value = "/login/{username}")
 	@ResponseBody
 	public String login(@PathVariable String username, @RequestParam("password") String password ) {
 		System.out.println(username);
 		System.out.println(password);
 		User user = userService.query(username);
 		if(user == null) {
+			System.out.println("00");
 			return "用户不存在";
 		} 
 		
