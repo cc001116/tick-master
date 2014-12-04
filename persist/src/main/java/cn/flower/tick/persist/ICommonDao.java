@@ -7,101 +7,101 @@ import java.util.LinkedHashMap;
 
 
 /**
- * DAO²ã¹«¹²·½·¨·â×°   
- * ½Ó¿ÚÃèÊöDAOËù¾ßÓĞµÄÄÜÁ¦;
+ * DAOå±‚å…¬å…±æ–¹æ³•å°è£…   
+ * æ¥å£æè¿°DAOæ‰€å…·æœ‰çš„èƒ½åŠ›;
  * @FileName ICommonDao.java
  * @author ChenCheng
  * @version 1.0
- * @Date 2014-11-27 ÏÂÎç2:40:11
- * @param <T> ·¶ĞÍÀà;
+ * @Date 2014-11-27 ä¸‹åˆ2:40:11
+ * @param <T> èŒƒå‹ç±»;
  */
 public interface ICommonDao<T> {
 	/**
-	 * save ÊµÌå¶ÔÏó;
-	 * @param entity ÊµÌå¶ÔÏó;
+	 * save å®ä½“å¯¹è±¡;
+	 * @param entity å®ä½“å¯¹è±¡;
 	 * @return 
 	 */
 	void save(T entity);
 	
 	/**
-	 * update ÊµÌå¶ÔÏó
-	 * @param entity ÊµÌå¶ÔÏó;
+	 * update å®ä½“å¯¹è±¡
+	 * @param entity å®ä½“å¯¹è±¡;
 	 */
 	void update(T entity);
 	/**
-	 * SQL ·½Ê½¸üĞÂ
+	 * SQL æ–¹å¼æ›´æ–°
 	 * @param sql
 	 * @param params
 	 */
 	void update(String sql, Object...values); 
 	
 	/**
-	 * ±£´æ»ò¸üĞÂ
+	 * ä¿å­˜æˆ–æ›´æ–°
 	 * @param entity
 	 */
 	void saveOrUpdate(T entity);
 	
 	/**
-	 * ÅúÁ¿±£´æ»ò¸üĞÂ
+	 * æ‰¹é‡ä¿å­˜æˆ–æ›´æ–°
 	 * @param entities
 	 */
 	void saveOrUpdateAll(Collection<T> entities) ;
 	
 	/**
-	 * ²éÕÒÖ¸¶¨ID¶ÔÏóµÄĞÅÏ¢;
-	 * @param id ÊµÌå¶ÔÏó±àºÅ£¬ÀàĞÍÎªSerializable; Integer,String µÈ¶¼ÊµÏÖÁËSerializable½Ó¿Ú;
-	 * @return ·µ»Ø·ûºÏÌõ¼şµÄ<T>ĞÍ¶ÔÏó;
+	 * æŸ¥æ‰¾æŒ‡å®šIDå¯¹è±¡çš„ä¿¡æ¯;
+	 * @param id å®ä½“å¯¹è±¡ç¼–å·ï¼Œç±»å‹ä¸ºSerializable; Integer,String ç­‰éƒ½å®ç°äº†Serializableæ¥å£;
+	 * @return è¿”å›ç¬¦åˆæ¡ä»¶çš„<T>å‹å¯¹è±¡;
 	 */
 	T findObjectById(Serializable id);
 	
 	/**
-	 * É¾³ıÖ¸¶¨IDµÄ¶ÔÏóµÄĞÅÏ¢;
-	 * @param ids ÒªÉ¾³ıµÄ¶ÔÏóIDÊı×é;
+	 * åˆ é™¤æŒ‡å®šIDçš„å¯¹è±¡çš„ä¿¡æ¯;
+	 * @param ids è¦åˆ é™¤çš„å¯¹è±¡IDæ•°ç»„;
 	 */	
 	void deleteObjectByIds(Serializable... ids);
 	
 	/**
-	 * É¾³ı¼¯ºÏÖĞµÄÊı¾İ;
-	 * @param collection  ÒªÉ¾³ıµÄ¶ÔÏóµÄ¼¯ºÏ£¨Ò»°ãÎªlist£©; 
+	 * åˆ é™¤é›†åˆä¸­çš„æ•°æ®;
+	 * @param collection  è¦åˆ é™¤çš„å¯¹è±¡çš„é›†åˆï¼ˆä¸€èˆ¬ä¸ºlistï¼‰; 
 	 */
 	void deleteObjectByCollection(Collection<T> collection);
 	
 	/**
-	 * ²éÕÒ·ûºÏÌõ¼şµÄÊı¾İ;
-	 * @param whereSql  ÃèÊöSQLÖĞ whereÌõ¼ş×Ó¾äÖĞand×Ó¾äµÄ×Ö·û´®£ºĞÎÊ½Îª£º¡°AND id = ? AND name = ?¡±;
+	 * æŸ¥æ‰¾ç¬¦åˆæ¡ä»¶çš„æ•°æ®;
+	 * @param whereSql  æè¿°SQLä¸­ whereæ¡ä»¶å­å¥ä¸­andå­å¥çš„å­—ç¬¦ä¸²ï¼šå½¢å¼ä¸ºï¼šâ€œAND id = ? AND name = ?â€;
 	 * 
-	 * @param params	Ìî³äSQLÓï¾äÖĞÕ¼Î»·û("?")µÄ²ÎÊı;
+	 * @param params	å¡«å……SQLè¯­å¥ä¸­å ä½ç¬¦("?")çš„å‚æ•°;
 	 */
 	T findObjectByHql(String whereSql,Object...params);
 
 	/**
-	 * ²éÕÒ·ûºÏÌõ¼şµÄÊı¾İ
-	 * @param sql	±ê×¼sqlÓï¾ä
-	 * @param params	Ìî³äSQLÓï¾äÖĞÕ¼Î»·ûµÄ¡°£¿¡±²ÎÊı
+	 * æŸ¥æ‰¾ç¬¦åˆæ¡ä»¶çš„æ•°æ®
+	 * @param sql	æ ‡å‡†sqlè¯­å¥
+	 * @param params	å¡«å……SQLè¯­å¥ä¸­å ä½ç¬¦çš„â€œï¼Ÿâ€å‚æ•°
 	 * @return
 	 */
 	T findObjectBySql(String sql, Object...params);
 	
 	/**
-	 * ²éÕÒ·ûºÏÌõ¼şµÄÊı¾İ;
-	 * @param whereSql  ÃèÊöSQLÖĞ whereÌõ¼ş×Ó¾äÖĞand×Ó¾äµÄ×Ö·û´®£ºĞÎÊ½Îª£º¡°AND id = ? AND name = ?¡±;
+	 * æŸ¥æ‰¾ç¬¦åˆæ¡ä»¶çš„æ•°æ®;
+	 * @param whereSql  æè¿°SQLä¸­ whereæ¡ä»¶å­å¥ä¸­andå­å¥çš„å­—ç¬¦ä¸²ï¼šå½¢å¼ä¸ºï¼šâ€œAND id = ? AND name = ?â€;
 	 * 
-	 * @param params	Ìî³äSQLÓï¾äÖĞÕ¼Î»·û("?")µÄ²ÎÊı;
-	 * Àı£ºObject[] params = {1,"chen"};
+	 * @param params	å¡«å……SQLè¯­å¥ä¸­å ä½ç¬¦("?")çš„å‚æ•°;
+	 * ä¾‹ï¼šObject[] params = {1,"chen"};
 	 * "WHERE 1 = 1 AND id = ? AND name = ?" 
-	 * ³ÌĞò×Ô¶¯Í¨¹ıquery.setParameter(i, params[i])°´Ë³ĞòÌî³ä
+	 * ç¨‹åºè‡ªåŠ¨é€šè¿‡query.setParameter(i, params[i])æŒ‰é¡ºåºå¡«å……
 	 * 
-	 * @param orderMap  ×éÖ¯SQLÖĞORDER¡¡BY¡¡×Ó¾äµÄÄÚÈİ; 
-	 * Àı:  LinkedHashMap<String , String> map = new LinkedHashMap<String, String>();
-	 * map.put("date","desc");³ÌĞò½«×Ô¶¯½«Æä×éÖ¯³É£º¡°ORDER BY date desc¡±ÑùÊ½µÄ×Ö·û´®;
+	 * @param orderMap  ç»„ç»‡SQLä¸­ORDERã€€BYã€€å­å¥çš„å†…å®¹; 
+	 * ä¾‹:  LinkedHashMap<String , String> map = new LinkedHashMap<String, String>();
+	 * map.put("date","desc");ç¨‹åºå°†è‡ªåŠ¨å°†å…¶ç»„ç»‡æˆï¼šâ€œORDER BY date descâ€æ ·å¼çš„å­—ç¬¦ä¸²;
 	 * 
-	 * @return Collection ¶ÔÏó¼¯ºÏ;
+	 * @return Collection å¯¹è±¡é›†åˆ;
 	 */
 	Collection<T> findCollectionByHql(String whereSql,
 			final Object[] params, LinkedHashMap<String, String> orderMap);
 	
 	/**
-	 * ÒÔ±ê×¼SQL·½Ê½²éÑ¯·ûºÏÌõ¼şÊı¾İ
+	 * ä»¥æ ‡å‡†SQLæ–¹å¼æŸ¥è¯¢ç¬¦åˆæ¡ä»¶æ•°æ®
 	 * @param sql
 	 * @param params
 	 * @return

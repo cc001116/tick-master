@@ -1,4 +1,4 @@
-package cn.flower.tick.model.system;
+package cn.flower.tick.model.biz;
 
 import java.util.Date;
 
@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 
 import cn.flower.tick.model.BaseModel;
+import cn.flower.tick.model.system.User;
 
 @Entity
 public class Passenger extends BaseModel{
@@ -18,8 +19,10 @@ public class Passenger extends BaseModel{
 	
 	private String name;
 	private String idCard;
+	private String phone;
 	private User createUser;
 	private Date createDate;
+	private Integer status;
 	
 	@Column(nullable = false)
 	public String getName() {
@@ -36,6 +39,20 @@ public class Passenger extends BaseModel{
 	public void setIdCard(String idCard) {
 		this.idCard = idCard;
 	}
+	public String getPhone() {
+		return phone;
+	}
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+	
+	public Integer isStatus() {
+		return status;
+	}
+	public void setStatus(Integer status) {
+		this.status = status;
+	}
+	
 	@ManyToOne(targetEntity = User.class)
 	public User getCreateUser() {
 		return createUser;
@@ -43,6 +60,7 @@ public class Passenger extends BaseModel{
 	public void setCreateUser(User createUser) {
 		this.createUser = createUser;
 	}
+	
 	public Date getCreateDate() {
 		return createDate;
 	}

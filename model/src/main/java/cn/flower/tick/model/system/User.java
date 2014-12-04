@@ -9,7 +9,7 @@ import javax.persistence.Table;
 import cn.flower.tick.model.BaseModel;
 
 @Entity
-@Table(name = "users")	//SQLServer user ±Ì≤ª»œ£ª
+@Table(name = "users")	
 public class User extends BaseModel {
 
 	/**

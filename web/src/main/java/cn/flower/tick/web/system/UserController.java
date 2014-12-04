@@ -1,5 +1,11 @@
 package cn.flower.tick.web.system;
 
+import java.io.UnsupportedEncodingException;
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -20,26 +26,36 @@ public class UserController extends BaseController {
 	@Autowired
 	private IUserService userService;
 	
-	@RequestMapping(/*method = RequestMethod.POST,*/ value = "/register")
+	@RequestMapping(method = RequestMethod.POST, value = "/register")
 	public String Register(@ModelAttribute("user") User user) {
 		userService.register(user);
 		return "user/register";
 	}
 	
-	@RequestMapping(/*method = RequestMethod.POST, */value = "/login/{username}")
+	@RequestMapping(method = RequestMethod.POST, value = "/login/{username}")
 	@ResponseBody
-	public String login(@PathVariable String username, @RequestParam("password") String password ) {
+	public Map<String, String> login(HttpServletRequest request, @PathVariable String username, @RequestParam("password") String password ) {
 		System.out.println(username);
 		System.out.println(password);
 		User user = userService.query(username);
+		String msg = null;
 		if(user == null) {
-			System.out.println("00");
-			return "用户不存在";
-		} 
+			msg = "用户不存在";
+		} else if(!user.getPassword().equals(password.trim())) 
+			msg = "密码错误";
+		else
+			msg = SUCCESS;
 		
-		if(!user.getPassword().equals(password.trim())) 
-			return "密码错误";
-		
-		return SUCCESS;
+		setSessionUser(request, user);
+		Map<String, String> responseContext = new HashMap<String, String>();
+		responseContext.put("JSESSIONID", request.getSession().getId());
+		responseContext.put("msg", msg);
+		return responseContext;
+	}
+	
+	@RequestMapping("/info/{id}")
+	@ResponseBody
+	public User showInfo(@PathVariable Long id) {
+		return userService.query(id);
 	}
 }

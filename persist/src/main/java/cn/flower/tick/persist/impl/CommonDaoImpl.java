@@ -59,6 +59,7 @@ public abstract class CommonDaoImpl<T> implements ICommonDao<T> {
 	 *  获取表名（注解方式配表名时特殊处理）
 	 * @return
 	 */
+	@SuppressWarnings("unused")
 	private String getTableName() {
 		String tableName = null;
 		@SuppressWarnings("unchecked")
