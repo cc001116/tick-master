@@ -42,7 +42,7 @@ public class PassengerController extends BaseController {
 		passengerService.save(passenger);
 		return SUCCESS;
 	}
-
+	
 	@RequestMapping("/view/list")
 	@ResponseBody
 	public List<Passenger> showAllPassengers(HttpServletRequest request) {
