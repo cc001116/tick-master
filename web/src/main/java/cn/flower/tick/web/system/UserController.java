@@ -1,6 +1,5 @@
 package cn.flower.tick.web.system;
 
-import java.io.UnsupportedEncodingException;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -9,7 +8,6 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -28,6 +26,7 @@ public class UserController extends BaseController {
 	private IUserService userService;
 
 	@RequestMapping(method = RequestMethod.POST, value = "/register")
+	@ResponseBody
 	public String Register(@RequestParam(value = "username") String username,
 			@RequestParam(value = "password") String password) {
 		User user = new User();
@@ -35,7 +34,7 @@ public class UserController extends BaseController {
 		user.setPassword(password);
 		user.setRegisterDate(new Date());
 		userService.register(user);
-		return "user/register";
+		return SUCCESS;
 	}
 
 	@RequestMapping(method = RequestMethod.POST, value = "/login/{username}")
