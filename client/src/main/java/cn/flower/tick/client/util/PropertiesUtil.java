@@ -1,4 +1,4 @@
-package cn.flower.tick.util;
+package cn.flower.tick.client.util;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -26,7 +26,7 @@ public class PropertiesUtil {
 	 * @return 返回PropertiesFilePaht 路径
 	 */
 	private static String getPath(String filePath,String encoding){
-		@SuppressWarnings("rawtypes")
+		/*@SuppressWarnings("rawtypes")
 		Class clazz = PropertiesUtil.class;	
 		URL url = clazz.getClassLoader().getResource(filePath);
 		if(url == null)
@@ -36,6 +36,15 @@ public class PropertiesUtil {
 			path = URLDecoder.decode(path, encoding);
 		} catch (UnsupportedEncodingException e) {
 			throw new RuntimeException(e);
+		}
+		return path;*/
+		File file = new File("session.properties");
+		String path = null;
+		try {
+			path = file.getCanonicalPath();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		return path;
 	}
@@ -75,6 +84,7 @@ public class PropertiesUtil {
 	}
 	
 	public static String getValue(String key) {
+		
 		Properties props = loadPropertiesFile("session.properties");
 		if(props.containsKey(key)){
 			return props.getProperty(key);			
@@ -82,9 +92,11 @@ public class PropertiesUtil {
 		return null;
 	}
 	
-	public static void storePropertiesFile(String sessionId) {
+	public static void storePropertiesFile(String sessionId, String loginTime, String username) {
 		Properties props = new Properties();
 		props.setProperty("JSESSIONID", sessionId);
+		props.setProperty("loginTime", loginTime);
+		props.setProperty("username", username);
 		OutputStream os = null;
 		try {
 			os = new FileOutputStream(getPath("session.properties", "UTF-8"));

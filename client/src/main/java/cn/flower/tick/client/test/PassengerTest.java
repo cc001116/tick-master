@@ -1,4 +1,4 @@
-package cn.flower.tick.util;
+package cn.flower.tick.client.test;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -6,25 +6,16 @@ import java.util.Map;
 import org.apache.http.Header;
 import org.junit.Test;
 
-public class JTest {
-	
-	@Test
-	public void login() {
-		String uri = HttpClientUtil.HOST+ "/user/login/user";
-		Map<String, String> map = new HashMap<String, String>();
-		map.put("password", "1234");
-		String msg = HttpClientUtil.sendPostRequest(uri, map, null);
-		System.out.println(msg);
-		PropertiesUtil.storePropertiesFile(JsonUtil.getValue(msg, "JSESSIONID"));
-		System.out.println(PropertiesUtil.getValue("JSESSIONID"));
-	}
+import cn.flower.tick.client.util.HttpClientUtil;
+
+public class PassengerTest {
 	
 	@Test
 	public void savePassenger() {
 		String url = HttpClientUtil.HOST + "/passenger/save";
 		Map<String, String> params = new HashMap<String, String>();
-		params.put("name", "fanq");
-		params.put("idCard", "0001x");
+		params.put("name", "test");
+		params.put("idCard", "0002x");
 		params.put("phone", "1231233");
 		Header header = HttpClientUtil.getDefaultHeader();
 		String msg = HttpClientUtil.sendPostRequest(url, params, header);

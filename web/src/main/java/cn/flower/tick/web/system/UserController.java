@@ -1,6 +1,7 @@
 package cn.flower.tick.web.system;
 
 import java.io.UnsupportedEncodingException;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -25,34 +26,41 @@ public class UserController extends BaseController {
 
 	@Autowired
 	private IUserService userService;
-	
+
 	@RequestMapping(method = RequestMethod.POST, value = "/register")
-	public String Register(@ModelAttribute("user") User user) {
+	public String Register(@RequestParam(value = "username") String username,
+			@RequestParam(value = "password") String password) {
+		User user = new User();
+		user.setUsername(username);
+		user.setPassword(password);
+		user.setRegisterDate(new Date());
 		userService.register(user);
 		return "user/register";
 	}
-	
+
 	@RequestMapping(method = RequestMethod.POST, value = "/login/{username}")
 	@ResponseBody
-	public Map<String, String> login(HttpServletRequest request, @PathVariable String username, @RequestParam("password") String password ) {
+	public Map<String, String> login(HttpServletRequest request,
+			@PathVariable String username,
+			@RequestParam("password") String password) {
 		System.out.println(username);
 		System.out.println(password);
 		User user = userService.query(username);
 		String msg = null;
-		if(user == null) {
+		if (user == null) {
 			msg = "用户不存在";
-		} else if(!user.getPassword().equals(password.trim())) 
+		} else if (!user.getPassword().equals(password.trim()))
 			msg = "密码错误";
 		else
 			msg = SUCCESS;
-		
+
 		setSessionUser(request, user);
 		Map<String, String> responseContext = new HashMap<String, String>();
 		responseContext.put("JSESSIONID", request.getSession().getId());
 		responseContext.put("msg", msg);
 		return responseContext;
 	}
-	
+
 	@RequestMapping("/info/{id}")
 	@ResponseBody
 	public User showInfo(@PathVariable Long id) {

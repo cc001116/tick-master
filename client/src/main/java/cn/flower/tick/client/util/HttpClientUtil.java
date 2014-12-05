@@ -1,4 +1,4 @@
-package cn.flower.tick.util;
+package cn.flower.tick.client.util;
 
 import java.io.BufferedReader;
 import java.io.IOException;
