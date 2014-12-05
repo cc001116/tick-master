@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import cn.flower.tick.model.biz.Passenger;
+import cn.flower.tick.model.system.User;
 import cn.flower.tick.persist.IPassengerDao;
 import cn.flower.tick.service.IPassengerService;
 
@@ -45,9 +46,9 @@ public class PassengerServiceImpl implements IPassengerService {
 	}
 
 	@Override
-	public List<Passenger> showAll() {
-		
-		return (List<Passenger>) dao.findCollectionByHql(null, null, null);
+	public List<Passenger> showAll(User user) {
+		String hql = "WHERE o.createUser = ?";
+		return (List<Passenger>) dao.findCollectionByHql(hql, new Object[]{user}, null);
 	}
 
 }

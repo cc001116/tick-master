@@ -45,8 +45,8 @@ public class PassengerController extends BaseController {
 
 	@RequestMapping("/view/list")
 	@ResponseBody
-	public List<Passenger> showAllPassengers() {
-		return passengerService.showAll();
+	public List<Passenger> showAllPassengers(HttpServletRequest request) {
+		return passengerService.showAll(getSessionUser(request));
 	}
 
 	@RequestMapping("/update/{id}")

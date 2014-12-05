@@ -18,12 +18,8 @@ pom.xml.versionsBackup
 pom.xml.next
 release.properties
 
-.project
-classes/
-.settings/
-.metadata
-.classpath
+
 *.swp
 *.tmp
 *.log
-.mymetadata
+
