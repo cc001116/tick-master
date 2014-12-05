@@ -36,7 +36,7 @@ public interface IUserService {
 	 * @param id
 	 * @return
 	 */
-	public User query(Serializable id);
+	public User queryById(Serializable id);
 	
 	/**
 	 * 依名字查询用户

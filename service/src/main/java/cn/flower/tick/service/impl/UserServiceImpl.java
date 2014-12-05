@@ -47,7 +47,7 @@ public class UserServiceImpl implements IUserService{
 	}
 
 	@Override
-	public User query(Serializable id) {
+	public User queryById(Serializable id) {
 		return this.userDao.findObjectById(id);
 	}
 

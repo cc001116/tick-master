@@ -60,9 +60,25 @@ public class UserController extends BaseController {
 		return responseContext;
 	}
 
+	@RequestMapping("/update/password/{id}")
+	@ResponseBody
+	public String modifyPassword(
+			@PathVariable Long id,
+			@RequestParam(value = "oldPassword", required = true) String oldPassword,
+			@RequestParam(value = "newPassword") String newPassword) {
+		User user = showInfo(id);
+		if (!user.getPassword().equals(oldPassword.trim())) {
+			return "password_err";
+		}
+
+		user.setPassword(newPassword);
+		userService.saveOrUpdate(user);
+		return SUCCESS;
+	}
+
 	@RequestMapping("/info/{id}")
 	@ResponseBody
 	public User showInfo(@PathVariable Long id) {
-		return userService.query(id);
+		return userService.queryById(id);
 	}
 }

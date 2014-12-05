@@ -42,4 +42,14 @@ public class UserTest {
 			System.out.println(js);
 		}
 	}	
+	
+	@Test
+	public void modifyPassword() {
+		String uri = HttpClientUtil.HOST+ "/user/update/password/5";
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("oldPassword", "chen");
+		map.put("newPassword", "cheng");
+		String msg = HttpClientUtil.sendPostRequest(uri, map, HttpClientUtil.getDefaultHeader());
+		System.out.println(msg);
+	}
 }
