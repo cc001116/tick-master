@@ -12,11 +12,11 @@ import javax.persistence.MappedSuperclass;
 @SuppressWarnings("serial")
 @MappedSuperclass
 public class BaseModel implements Serializable {
-	protected Long id;
-
 	@Id
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	protected Long id;
+
 	public Long getId() {
 		return id;
 	}

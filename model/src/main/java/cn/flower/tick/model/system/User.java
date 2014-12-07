@@ -17,11 +17,11 @@ public class User extends BaseModel {
 	 */
 	private static final long serialVersionUID = -8963385763043535808L;
 
+	@Column(unique = true, nullable = false)
 	private String username;
 	private String password;
 	private Date registerDate;
 
-	@Column(unique = true, nullable = false)
 	public String getUsername() {
 		return username;
 	}

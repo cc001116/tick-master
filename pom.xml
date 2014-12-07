@@ -74,7 +74,7 @@
 		<profile>
 			<id>chen</id>
 			<properties>
-				<database.url>jdbc:mysql://127.0.0.1:3306/tick_mysql</database.url>
+				<database.url>jdbc:mysql://127.0.0.1:3306/tick</database.url>
 				<database.user>root</database.user>
 				<database.password>root</database.password>
 

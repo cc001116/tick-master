@@ -1,10 +1,15 @@
 package cn.flower.tick.model.biz;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import cn.flower.tick.model.BaseModel;
 import cn.flower.tick.model.system.User;
@@ -18,11 +23,17 @@ public class Passenger extends BaseModel{
 	private static final long serialVersionUID = 5254796046917704845L;
 	
 	private String name;
+	
+	@Column(unique = true, nullable = false)
 	private String idCard;
 	private String phone;
+	
+	@ManyToOne(targetEntity = User.class)
 	private User createUser;
 	private Date createDate;
 	private Integer status;
+	@OneToMany(mappedBy = "passenger" ,cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+	private Set<Ticket> tickets = new HashSet<Ticket>();
 	
 	@Column(nullable = false)
 	public String getName() {
@@ -32,7 +43,6 @@ public class Passenger extends BaseModel{
 		this.name = name;
 	}
 	
-	@Column(unique = true, nullable = false)
 	public String getIdCard() {
 		return idCard;
 	}
@@ -53,7 +63,6 @@ public class Passenger extends BaseModel{
 		this.status = status;
 	}
 	
-	@ManyToOne(targetEntity = User.class)
 	public User getCreateUser() {
 		return createUser;
 	}
@@ -67,5 +76,12 @@ public class Passenger extends BaseModel{
 	public void setCreateDate(Date createDate) {
 		this.createDate = createDate;
 	}
+	public Set<Ticket> getTickets() {
+		return tickets;
+	}
+	public void setTickets(Set<Ticket> tickets) {
+		this.tickets = tickets;
+	}
+	
 	
 }

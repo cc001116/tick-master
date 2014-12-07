@@ -155,8 +155,9 @@ public abstract class CommonDaoImpl<T> implements ICommonDao<T> {
 	/**
 	 * 标准SQL方式查询符合条件的对象
 	 */
-	public T findObjectBySql(String sql, Object... params) {
-		List<T> list = (List<T>) findCollectionBySql(sql, params);
+	@SuppressWarnings("rawtypes")
+	public Object findObjectBySql(String sql, Object... params) {
+		List list = (List) findCollectionBySql(sql, params);
 		return list.size() > 0 ? list.get(0) : null;
 	}
 
@@ -174,11 +175,13 @@ public abstract class CommonDaoImpl<T> implements ICommonDao<T> {
 	/**
 	 * 标准SQL方式查询符合条件的集合
 	 */
-	@SuppressWarnings("unchecked")
-	public Collection<T> findCollectionBySql(final String sql,
-			final Object[] params) {
-		return getSqlQuery(this.getSession(), sql, params).list();
-
+	
+	
+	@SuppressWarnings("rawtypes")
+	public List findCollectionBySql(final String sql,
+			final Object...params) {
+		List list = getSqlQuery(this.getSession(), sql, params).list();
+		return list;
 	}
 
 	private String createSql(String whereSql,

@@ -4,6 +4,7 @@ package cn.flower.tick.persist;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.LinkedHashMap;
+import java.util.List;
 
 
 /**
@@ -80,7 +81,7 @@ public interface ICommonDao<T> {
 	 * @param params	填充SQL语句中占位符的“？”参数
 	 * @return
 	 */
-	T findObjectBySql(String sql, Object...params);
+	Object findObjectBySql(String sql, Object...params);
 	
 	/**
 	 * 查找符合条件的数据;
@@ -106,5 +107,6 @@ public interface ICommonDao<T> {
 	 * @param params
 	 * @return
 	 */
-	Collection<T> findCollectionBySql(String sql, final Object[] params);
+	@SuppressWarnings("rawtypes")
+	List findCollectionBySql(String sql, final Object...params);
 }
