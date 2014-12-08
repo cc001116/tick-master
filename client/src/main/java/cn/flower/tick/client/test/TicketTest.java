@@ -1,9 +1,4 @@
 package cn.flower.tick.client.test;
-
-
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
-
 import org.junit.Test;
 
 import cn.flower.tick.client.util.HttpClientUtil;
