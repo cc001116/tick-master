@@ -98,6 +98,15 @@
 			</properties>
 		</profile>
 
+		<profile>
+			<id>xiaofu</id>
+			<properties>
+				<database.url>jdbc:mysql://127.0.0.1:3306/tick_mysql</database.url>
+				<database.user>root</database.user>
+				<database.password>root</database.password>
+				<hibernate.dialect>org.hibernate.dialect.MySQL5InnoDBDialect</hibernate.dialect>
+			</properties>
+		</profile>
 	</profiles>
 
 	<dependencyManagement>
