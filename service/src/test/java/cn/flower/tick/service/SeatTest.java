@@ -37,7 +37,7 @@ public class SeatTest {
 	
 	@Test
 	public void queryUnsoldTicketByStation() {
-		List seats = seatService.queryUnsoldSeat("北京", "南阳", "2014-12-07");
+		List seats = seatService.queryUnsoldSeats("北京", "南阳", "2014-12-07");
 		for (int i = 0; i < seats.size(); i++) {
 			Object[] objs = (Object[]) seats.get(i);
 			for(Object o : objs) {

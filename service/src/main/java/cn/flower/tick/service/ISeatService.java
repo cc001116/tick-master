@@ -16,5 +16,5 @@ public interface ISeatService {
 	@SuppressWarnings("rawtypes")
 	public List queryUnsoldSeat(Train train, String date);
 	@SuppressWarnings("rawtypes")
-	List queryUnsoldSeat(String fromStation, String toStation, String startDate);
+	List queryUnsoldSeats(String fromStation, String toStation, String startDate);
 }

@@ -24,14 +24,7 @@ public class TicketController extends BaseController {
 	@ResponseBody
 	public List queryUnsoldTicket(@PathVariable String from,
 			@PathVariable String to, @PathVariable String date) {
-		List list =  seatService.queryUnsoldSeat(convertCharSet(from), convertCharSet(to), date);
-		for (int i = 0; i < list.size(); i++) {
-			Object[] objs = (Object[]) list.get(i);
-			for(Object o : objs) {
-				System.out.print(o+"  ");
-			}
-			System.out.println();
-		}
+		List list =  seatService.queryUnsoldSeats(convertCharSet(from), convertCharSet(to), date);
 		return list;
 	}
 	
