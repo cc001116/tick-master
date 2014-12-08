@@ -46,7 +46,15 @@ public class Init {
 	String[] destinations = { "周口", "南阳", "驻马店", "绍阳" };
 
 	@Test
-	public void initSeatType() {
+	public void init() {
+		initSeatType();
+		initTrain();
+		initRooms();
+		initSeats();
+		initPrice();
+	}
+	
+	private void initSeatType() {
 		String[] types = { "硬座", "软座", "硬卧", "软卧" };
 
 		for (String t : types) {
@@ -57,8 +65,8 @@ public class Init {
 		}
 	}
 
-	@Test
-	public void initTrain() {
+	
+	private void initTrain() {
 	
 		Random random = new Random();
 		List<Train> trains = new ArrayList<Train>();
@@ -69,15 +77,15 @@ public class Init {
 				t.setStartingStation(startingStation);
 				t.setDestination(destinations[i]);
 				t.setNumber("k" + random.nextInt(1000));
-				t.setRoomNum(random.nextInt(10) + 10);
+				t.setRoomNum(18);
 				trains.add(t);
 			}
 		}
 		this.trainService.saveOrUpdate(trains);
 	}
 	
-	@Test
-	public void initRooms() {
+	
+	private void initRooms() {
 		List<Train> trains = this.trainService.showAll();
 		List<SeatType> types = this.seatTypeService.showAll();
 		List<Room> rooms = new ArrayList<Room>();
@@ -95,8 +103,8 @@ public class Init {
 		roomService.saveOrUpdate(rooms);
 	}
 	
-	@Test
-	public void initSeats() {
+	
+	private void initSeats() {
 		List<Train> trains = this.trainService.showAll();
 		List<Seat> seats = new ArrayList<Seat>();		
 		for(Train t : trains) {
@@ -113,8 +121,8 @@ public class Init {
 		this.seatService.saveOrUpdate(seats);
 	}
 	
-	@Test
-	public void initPrice() {
+	
+	private void initPrice() {
 		List<Train> trains = this.trainService.showAll();
 		List<SeatType> types = this.seatTypeService.showAll();
 		List<Price> prices = new ArrayList<Price>();
