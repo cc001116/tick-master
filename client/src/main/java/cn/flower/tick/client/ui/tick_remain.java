@@ -9,6 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 import javax.swing.ButtonGroup;
@@ -145,6 +146,48 @@ public class tick_remain extends Common_Interface {
 		//定义二维数组作为表格数据  
 	    
 	    //定义一维数据作为列标题 
+		
+		String from = "北京";
+		String to = "驻马店";
+		String uri = HttpClientUtil.HOST + "/ticket/view/unsold/"+from+"/"+to+"/2014-12-7";
+		String msg = HttpClientUtil.sendGetRequest(uri, HttpClientUtil.getDefaultHeader());
+		
+		List<Object[]> list = new ArrayList<Object[]>();
+		JSONArray array = JSON.parseArray(msg);
+		for(int a = 0; a < array.size(); a++) {
+			List<Object> obj = new ArrayList<Object>();
+	
+			JSONArray subArray = array.getJSONArray(a); //驱车信息
+			obj.add(subArray.remove(0));
+			String trainName = (String) subArray.remove(0);
+			obj.add(trainName);
+			obj.add(subArray.remove(0));
+			//System.out.println();
+			for (int i = 0; i < subArray.size(); i++ ){
+				JSONArray sub = subArray.getJSONArray(i);
+				for(int j = 0 ; j < sub.size(); j++)
+					obj.add(sub.get(j));
+			}
+			list.add(obj.toArray());
+			System.out.println();
+			System.out.println("++++++++++++++++"+trainName+"++++++++++++++++");
+		}
+		int row = list.size();
+		int column = list.get(0).length;
+		Object[][] datas = new Object[row][column];
+		for(int i=0;i<row;i++) {
+			Object[] values = list.get(i);
+			for (int j = 0; j < column; j++) {
+				datas[i][j] = values[j];
+			}
+		}
+		
+		for (int i = 0; i < datas.length; i++) {
+			for (int j = 0; j < datas[i].length; j++) {
+				System.out.println(datas[i][j]);
+			}
+		}
+		
 	    Object[] columnTitle = {"列车号" , "出发站" , "终点站","票数","票价","类型","日期","选择"};
 	    //jt=new JTable(tableData,columnTitle);
 	    jt.getColumnModel().getColumn(7).setCellRenderer(new TableCellRenderer(){

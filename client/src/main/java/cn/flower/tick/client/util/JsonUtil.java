@@ -45,7 +45,7 @@ public class JsonUtil {
 		}
 		
 		for (int i = 0; i < datas.length; i++) {
-			for (int j = 0; j < datas.length; j++) {
+			for (int j = 0; j < datas[i].length; j++) {
 				System.out.println(datas[i][j]);
 			}
 		}
