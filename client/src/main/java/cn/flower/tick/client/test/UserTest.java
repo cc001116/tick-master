@@ -10,7 +10,7 @@ import cn.flower.tick.client.util.JsonUtil;
 import cn.flower.tick.client.util.PropertiesUtil;
 
 public class UserTest {
-	
+
 	@Test
 	public void register() {
 		String uri = HttpClientUtil.HOST + "/user/register";
@@ -20,11 +20,11 @@ public class UserTest {
 		String msg = HttpClientUtil.sendPostRequest(uri, map, null);
 		System.out.println(msg);
 	}
-	
+
 	@Test
 	public void login() {
 		String username = "chen";
-		String uri = HttpClientUtil.HOST+ "/user/login/"+ username;
+		String uri = HttpClientUtil.HOST + "/user/login/" + username;
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("password", "chen");
 		String msg = HttpClientUtil.sendPostRequest(uri, map, null);
@@ -33,23 +33,21 @@ public class UserTest {
 		long currentTime = System.currentTimeMillis();
 		String lastTime = PropertiesUtil.getValue("loginTime");
 		long lastLoginTime = Long.parseLong(lastTime);
-		/**
-		 * 不是同一用户登录或超时重写session
-		 */
-		if(!lastUsername.equals(username) || currentTime - lastLoginTime > 30 * 60 * 1000) { 
-			String js = JsonUtil.getValue(msg, "JSESSIONID");
-			PropertiesUtil.storePropertiesFile(js, String.valueOf(currentTime), username);
-			System.out.println(js);
-		}
-	}	
-	
+		String js = JsonUtil.getValue(msg, "JSESSIONID");
+		PropertiesUtil.storePropertiesFile(js, String.valueOf(currentTime),
+				username);
+		System.out.println(js);
+
+	}
+
 	@Test
 	public void modifyPassword() {
-		String uri = HttpClientUtil.HOST+ "/user/update/password/5";
+		String uri = HttpClientUtil.HOST + "/user/update/password/5";
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("oldPassword", "chen");
 		map.put("newPassword", "cheng");
-		String msg = HttpClientUtil.sendPostRequest(uri, map, HttpClientUtil.getDefaultHeader());
+		String msg = HttpClientUtil.sendPostRequest(uri, map,
+				HttpClientUtil.getDefaultHeader());
 		System.out.println(msg);
 	}
 }
