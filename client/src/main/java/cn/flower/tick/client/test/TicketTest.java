@@ -7,7 +7,13 @@ import org.junit.Test;
 
 import cn.flower.tick.client.util.HttpClientUtil;
 import cn.flower.tick.client.util.JsonUtil;
-
+/**
+ * 
+ * @FileName TicketTest.java
+ * @Author ChenCheng
+ * @Version v1.0
+ * @Date 2014年12月9日 下午9:24:13
+ */
 public class TicketTest {
 	@Test
 	public void queryUnsoldTicket() {

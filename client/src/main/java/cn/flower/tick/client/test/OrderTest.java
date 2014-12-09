@@ -8,7 +8,13 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 
 import cn.flower.tick.client.util.HttpClientUtil;
-
+/**
+ * 
+ * @FileName OrderTest.java
+ * @Author ChenCheng
+ * @Version v1.0
+ * @Date 2014年12月9日 下午9:24:00
+ */
 public class OrderTest {
 	
 	@Test

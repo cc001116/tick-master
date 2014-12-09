@@ -7,7 +7,13 @@ import org.apache.http.Header;
 import org.junit.Test;
 
 import cn.flower.tick.client.util.HttpClientUtil;
-
+/**
+ * 
+ * @FileName PassengerTest.java
+ * @Author ChenCheng
+ * @Version v1.0
+ * @Date 2014年12月9日 下午9:24:07
+ */
 public class PassengerTest {
 	
 	@Test
