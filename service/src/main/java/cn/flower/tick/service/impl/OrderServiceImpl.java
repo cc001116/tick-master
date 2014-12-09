@@ -112,8 +112,13 @@ public class OrderServiceImpl implements IOrderService {
 	}
 
 	@Override
-	public List<Order> queryCompletedOrderByUser(User user) {
-		return queryOrderByUser(user , OrderState.COMPLETED);
+	public List<Map<String, Object>> queryCompletedOrderByUser(User user) {
+		Long userId = user.getId();
+		String hql = "WHERE o.state = ? AND o.createUser.id = ?";
+		List<Order> orders =  (List<Order>) this.orderDao.findCollectionByHql(hql,
+				new Object[] { OrderState.COMPLETED.value, userId },
+				null);
+		return extractField(orders);
 	}
 
 	@Override

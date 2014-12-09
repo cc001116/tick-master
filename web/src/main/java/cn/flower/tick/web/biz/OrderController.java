@@ -45,7 +45,9 @@ public class OrderController extends BaseController {
 
 	@RequestMapping("/view/completed")
 	@ResponseBody
-	public List<Order> queryCompletedOrders(HttpServletRequest request) {
-		return orderService.queryCompletedOrderByUser(getSessionUser(request));
+	public List<Map<String, Object>> queryCompletedOrders(HttpServletRequest request) {
+		User user = getSessionUser(request);
+		List<Map<String, Object>> list = orderService.queryCompletedOrderByUser(user);
+		return list;
 	}
 }
