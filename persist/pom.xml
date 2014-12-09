@@ -49,7 +49,7 @@
 			<groupId>cglib</groupId>
 			<artifactId>cglib-nodep</artifactId>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
@@ -57,20 +57,9 @@
 
 	</dependencies>
 
-	<!-- <build>
-		<resources>
-			<resource>
-				<directory>src/main/resources</directory>
-				<filtering>true</filtering>
-			</resource>
-		</resources>
-
-		<testResources>
-			<testResource>
-				<directory>src/test/resources</directory>
-				<filtering>true</filtering>
-			</testResource>
-		</testResources>
-	</build> -->
+	<!-- <build> <resources> <resource> <directory>src/main/resources</directory> 
+		<filtering>true</filtering> </resource> </resources> <testResources> <testResource> 
+		<directory>src/test/resources</directory> <filtering>true</filtering> </testResource> 
+		</testResources> </build> -->
 
 </project>

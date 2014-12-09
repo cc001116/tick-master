@@ -25,7 +25,7 @@ public class TicketTest {
 		Ticket ticket = new Ticket();
 		Order order = new Order();
 		order.setCreateDate(new Date());
-		order.setAccount(223.0);
+		order.setAccount(223);
 		order.setCreateUser(user);
 		ticket.setOrder(order);
 		Passenger passenger = new Passenger();

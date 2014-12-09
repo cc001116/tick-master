@@ -24,7 +24,7 @@ public class Ticket extends BaseModel{
 	private String serialCode;
 	@ManyToOne(targetEntity= Seat.class, fetch = FetchType.EAGER)
 	private Seat seat;
-	@ManyToOne(targetEntity = Passenger.class, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@ManyToOne(targetEntity = Passenger.class, fetch = FetchType.EAGER)
 	private Passenger passenger;
 	private Date startDate;
 	@ManyToOne(targetEntity = Price.class, fetch = FetchType.EAGER)

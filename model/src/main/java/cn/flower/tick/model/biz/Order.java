@@ -21,10 +21,11 @@ public class Order extends BaseModel{
 	 * 
 	 */
 	private static final long serialVersionUID = -3293780065451975993L;
+	private String SerialCode;
 	@OneToMany(mappedBy = "order" ,fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private Set<Ticket> tickets = new HashSet<Ticket>();
 	private Date createDate;
-	private Double account;
+	private Integer account;
 	private Integer state;	//状态是否付费；
 	
 	@ManyToOne(targetEntity = User.class, fetch = FetchType.LAZY)
@@ -42,10 +43,10 @@ public class Order extends BaseModel{
 	public void setCreateDate(Date createDate) {
 		this.createDate = createDate;
 	}
-	public Double getAccount() {
+	public Integer getAccount() {
 		return account;
 	}
-	public void setAccount(Double account) {
+	public void setAccount(Integer account) {
 		this.account = account;
 	}
 	public Integer getState() {
@@ -59,6 +60,13 @@ public class Order extends BaseModel{
 	}
 	public void setCreateUser(User createUser) {
 		this.createUser = createUser;
+	}
+	
+	public String getSerialCode() {
+		return SerialCode;
+	}
+	public void setSerialCode(String serialCode) {
+		SerialCode = serialCode;
 	}
 	
 }
