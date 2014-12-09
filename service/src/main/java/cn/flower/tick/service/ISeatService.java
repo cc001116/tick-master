@@ -5,7 +5,6 @@ import java.util.Collection;
 import java.util.List;
 
 import cn.flower.tick.model.biz.Seat;
-import cn.flower.tick.model.biz.Train;
 
 public interface ISeatService {
 	public void saveOrUpdate(Seat seat);
@@ -14,7 +13,9 @@ public interface ISeatService {
 	
 	public Seat query(Long id);
 	@SuppressWarnings("rawtypes")
-	public List queryUnsoldSeat(Train train, String date);
+	public List queryUnsoldSeats(Long trainId, Long seatTypeId, String date, Integer size);
 	@SuppressWarnings("rawtypes")
 	List queryUnsoldSeats(String fromStation, String toStation, String startDate);
+	public Seat queryUnsoldSeat(Long trainId, Long seatTypeId, String date) ;
+
 }

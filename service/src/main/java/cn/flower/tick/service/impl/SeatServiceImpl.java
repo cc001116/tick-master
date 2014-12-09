@@ -1,10 +1,9 @@
 package cn.flower.tick.service.impl;
 
 import java.io.Serializable;
+import java.math.BigInteger;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +13,6 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import cn.flower.tick.model.biz.Seat;
-import cn.flower.tick.model.biz.Train;
 import cn.flower.tick.persist.ISeatDao;
 import cn.flower.tick.service.ISeatService;
 
@@ -48,18 +46,6 @@ public class SeatServiceImpl implements ISeatService {
 		return this.seatDao.findObjectById(id);
 	}
 
-	@SuppressWarnings("rawtypes")
-	@Override
-	public List queryUnsoldSeat(Train train, String date) {
-
-		String sql = "SELECT train, seat_type.type_name, count(*) " + "FROM ("
-				+ "SELECT * FROM seat where seat.id NOT IN"
-				+ "(SELECT seat from ticket where ticket.start_date = ?)"
-				+ ") unsold, room, seat_type "
-				+ "WHERE unsold.room = room.id AND room.train = ? "
-				+ "AND seat_type.id = room.seat_type GROUP BY room.seat_type";
-		return this.seatDao.findCollectionBySql(sql, date, train.getId());
-	}
 
 	//[4,1,"硬座",109,"18:34",583]
 	@SuppressWarnings("rawtypes")
@@ -108,7 +94,7 @@ public class SeatServiceImpl implements ISeatService {
 	}
 	
 	@SuppressWarnings("rawtypes")
-	public List queryUnsoldSeat(String fromStation, String toStation, String startDate) {
+	private List queryUnsoldSeat(String fromStation, String toStation, String startDate) {
 		String sql = "SELECT train.id trainId, train.number, departure_time, seat_type.id typeId, seat_type.type_name, price , count(*) "
 				+ "FROM (SELECT * FROM seat where seat.id NOT IN "
 				+ "(SELECT seat from ticket where ticket.start_date like ?)) unsold, room, seat_type, price, train "
@@ -121,5 +107,34 @@ public class SeatServiceImpl implements ISeatService {
 				+ "GROUP BY room.train, room.seat_type "
 				+ "ORDER BY departure_time, seat_type.id";
 		return this.seatDao.findCollectionBySql(sql, startDate, fromStation, toStation);
+	}
+
+	@SuppressWarnings("rawtypes")
+	@Override
+	public List queryUnsoldSeats(Long trainId, Long seatTypeId, String date,
+			Integer size) {
+		List list = queryUnsoldSeatsBySql(trainId, seatTypeId, date);
+		return list!=null && list.size() >= 4 ? list.subList(0, 4) : new ArrayList<Object>();
+	}
+	
+	@SuppressWarnings("rawtypes")
+	public Seat queryUnsoldSeat(Long trainId, Long seatTypeId, String date) {
+		List list = queryUnsoldSeatsBySql(trainId, seatTypeId, date);
+		BigInteger id = (BigInteger) (list!=null && list.size() > 0 ? list.get(0) : null);
+		return this.seatDao.findObjectById(id.longValue());
+	}
+	
+	@SuppressWarnings("rawtypes")
+	private List queryUnsoldSeatsBySql(Long trainId, Long seatTypeId, String date) {
+
+		String sql = "SELECT unsold.id FROM ("
+				+ "SELECT * FROM seat where seat.id NOT IN"
+				+ "(SELECT seat from ticket where ticket.start_date = ?)"
+				+ ") unsold, room, seat_type "
+				+ "WHERE unsold.room = room.id AND room.train = ? "
+				+ "AND seat_type.id = ? "
+				+ "AND seat_type.id = room.seat_type GROUP BY room.seat_type ";
+		List list = this.seatDao.findCollectionBySql(sql, date, trainId, seatTypeId);
+		return list;
 	}
 }

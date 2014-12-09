@@ -20,7 +20,7 @@ public class SeatTest {
 	@Autowired
 	private ISeatService seatService;
 
-	@SuppressWarnings("rawtypes")
+	/*@SuppressWarnings("rawtypes")
 	@Test
 	public void queryUnsoldTicket() {
 		Train train = new Train();
@@ -33,7 +33,7 @@ public class SeatTest {
 			}
 			System.out.println();
 		}
-	}
+	}*/
 	
 	@Test
 	public void queryUnsoldTicketByStation() {
