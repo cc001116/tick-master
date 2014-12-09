@@ -12,7 +12,7 @@ public class TicketTest {
 	@Test
 	public void queryUnsoldTicket() {
 		String from = "北京";
-		String to = "南阳";
+		String to = "驻马店";
 		String uri = HttpClientUtil.HOST + "/ticket/view/unsold/"+from+"/"+to+"/2014-12-7";
 		
 		String msg = HttpClientUtil.sendGetRequest(uri, HttpClientUtil.getDefaultHeader());
