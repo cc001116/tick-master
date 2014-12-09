@@ -8,7 +8,13 @@ import org.junit.Test;
 import cn.flower.tick.client.util.HttpClientUtil;
 import cn.flower.tick.client.util.JsonUtil;
 import cn.flower.tick.client.util.PropertiesUtil;
-
+/**
+ * 测试 
+ * @FileName UserTest.java
+ * @Author ChenCheng
+ * @Version v1.0
+ * @Date 2014年12月9日 下午9:24:19
+ */
 public class UserTest {
 
 	@Test

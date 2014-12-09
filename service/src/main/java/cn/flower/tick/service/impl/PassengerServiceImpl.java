@@ -47,8 +47,8 @@ public class PassengerServiceImpl implements IPassengerService {
 
 	@Override
 	public List<Passenger> showAll(User user) {
-		String hql = "WHERE o.createUser = ?";
-		return (List<Passenger>) dao.findCollectionByHql(hql, new Object[]{user}, null);
+		String hql = "WHERE o.createUser.id = ?";
+		return (List<Passenger>) dao.findCollectionByHql(hql, new Object[]{user.getId()}, null);
 	}
 
 }

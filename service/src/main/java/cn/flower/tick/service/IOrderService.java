@@ -17,7 +17,7 @@ public interface IOrderService {
 	
 	List<Order> queryUncompleteOrderByPassenger(Passenger passenger);
 	
-	List<Order> queryCompletedOrderByUser(User user);
+	List<Map<String, Object>> queryCompletedOrderByUser(User user);
 	
 	List<Order> queryCompletedOrderByPassenger(Passenger passenger);
 	
