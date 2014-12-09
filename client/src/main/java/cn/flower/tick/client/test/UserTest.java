@@ -41,15 +41,6 @@ public class UserTest {
 			String js = JsonUtil.getValue(msg, "JSESSIONID");
 			PropertiesUtil.storePropertiesFile(js, String.valueOf(currentTime), username);
 			System.out.println(js);
-		
-
-	
-
-		String js1 = JsonUtil.getValue(msg, "JSESSIONID");
-		PropertiesUtil.storePropertiesFile(js1, String.valueOf(currentTime),
-				username);
-		System.out.println(js1);
-
 	}
 
 
