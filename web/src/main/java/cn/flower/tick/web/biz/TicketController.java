@@ -22,6 +22,7 @@ import cn.flower.tick.model.biz.Price;
 import cn.flower.tick.model.biz.Seat;
 import cn.flower.tick.model.biz.Ticket;
 import cn.flower.tick.model.system.User;
+import cn.flower.tick.model.util.OrderState;
 import cn.flower.tick.service.IPriceService;
 import cn.flower.tick.service.ISeatService;
 import cn.flower.tick.service.ITicketService;
@@ -86,7 +87,7 @@ public class TicketController extends BaseController {
 		order.setSerialCode(UUID.randomUUID().toString().substring(19, 31));
 		order.setCreateUser(user);
 		order.setCreateDate(new Date());
-		order.setState(0);
+		order.setState(OrderState.UNCOMPLETE.value);
 		return order;
 	}
 	

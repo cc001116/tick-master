@@ -22,13 +22,13 @@ public class Order extends BaseModel{
 	 */
 	private static final long serialVersionUID = -3293780065451975993L;
 	private String SerialCode;
-	@OneToMany(mappedBy = "order" ,fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "order" ,fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private Set<Ticket> tickets = new HashSet<Ticket>();
 	private Date createDate;
 	private Integer account;
 	private Integer state;	//状态是否付费；
 	
-	@ManyToOne(targetEntity = User.class, fetch = FetchType.LAZY)
+	@ManyToOne(targetEntity = User.class, fetch = FetchType.EAGER)
 	private User createUser;
 	
 	public Set<Ticket> getTickets() {
