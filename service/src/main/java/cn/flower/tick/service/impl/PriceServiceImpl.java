@@ -48,8 +48,14 @@ public class PriceServiceImpl implements IPriceService {
 
 	@Override
 	public List<Price> query(String trainNumber) {
-		String hql = "WHERE o.train().number = ?";
+		String hql = "WHERE o.train.number = ?";
 		return (List<Price>) priceDao.findCollectionByHql(hql, new Object[]{trainNumber}, null);
+	}
+
+	@Override
+	public Price query(Long trainId, Long seatTypeId) {
+		String hql = "WHERE o.train.id = ? AND o.seatType.id = ?";
+		return priceDao.findObjectByHql(hql, trainId, seatTypeId);
 	}
 
 

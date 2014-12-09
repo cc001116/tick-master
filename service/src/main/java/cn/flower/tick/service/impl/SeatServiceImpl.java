@@ -83,10 +83,10 @@ public class SeatServiceImpl implements ISeatService {
 			if(objs[0] == o[0]) {
 				objs = o;
 				sub = new ArrayList<Object>();
-				sub.add(objs[2]);
 				sub.add(objs[3]);
 				sub.add(objs[4]);
 				sub.add(objs[5]);
+				sub.add(objs[6]);
 				temp.add(sub);
 			} else {
 				target.add(temp);

@@ -17,4 +17,6 @@ public interface IPriceService {
 	
 	public List<Price> query(String trainNumber);
 	
+	public Price query(Long trainId, Long seatTypeId);
+	
 }

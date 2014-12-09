@@ -19,6 +19,7 @@ public class Ticket extends BaseModel{
 	 * 
 	 */
 	private static final long serialVersionUID = 7128118258844334520L;
+	
 	@Column(unique = true, nullable = false)
 	private String serialCode;
 	@ManyToOne(targetEntity= Seat.class, fetch = FetchType.EAGER)
@@ -47,6 +48,20 @@ public class Ticket extends BaseModel{
 	public void setSeat(Seat seat) {
 		this.seat = seat;
 	}*/
+	
+	public Seat getSeat() {
+		return seat;
+	}
+	public void setSeat(Seat seat) {
+		this.seat = seat;
+	}
+	public Price getPrice() {
+		return price;
+	}
+	public void setPrice(Price price) {
+		this.price = price;
+	}
+	
 	public Passenger getPassenger() {
 		return passenger;
 	}
