@@ -204,7 +204,7 @@ public class tick_operation {
 //				tp.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
 				tab1 = new tablepane();
 				pane.add("Center",tab1);
-				tab1.pane1.add(new TicketList());
+				tab1.pane1.add(new tick_remain());
 				tablepane.tp.setVisible(true);
 				pane1.setVisible(true);
 			}

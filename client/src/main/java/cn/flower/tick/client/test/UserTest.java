@@ -36,11 +36,11 @@ public class UserTest {
 		/**
 		 * 不是同一用户登录或超时重写session
 		 */
-		if(!lastUsername.equals(username) || currentTime - lastLoginTime > 30 * 60 * 1000) { 
+		 
 			String js = JsonUtil.getValue(msg, "JSESSIONID");
 			PropertiesUtil.storePropertiesFile(js, String.valueOf(currentTime), username);
 			System.out.println(js);
-		}
+		
 	}	
 	
 	@Test
