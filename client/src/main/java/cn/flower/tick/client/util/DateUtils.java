@@ -7,9 +7,6 @@ import java.util.Date;
 
 public class DateUtils {
 
-  public final static int HALFMONTH = 15;
-  public final static int HALFMONTHAGO = -15;
-
   public final static String PATTERN_FULL = "yyyy-MM-dd HH:mm:ss";
   public final static String PATTERN_DAY = "yyyy-MM-dd"; 
   

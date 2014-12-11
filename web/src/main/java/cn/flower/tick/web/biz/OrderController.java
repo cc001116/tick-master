@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import cn.flower.tick.model.biz.Order;
+import cn.flower.tick.model.enums.OrderState;
 import cn.flower.tick.model.system.User;
 import cn.flower.tick.service.IOrderService;
 import cn.flower.tick.web.base.BaseController;
@@ -29,6 +31,15 @@ public class OrderController extends BaseController {
 		return SUCCESS;
 	}
 
+	@RequestMapping("/pay/{id}")
+	@ResponseBody
+	public String pay(@PathVariable Long id) {
+		Order order =  orderService.query(id);
+		order.setState(OrderState.COMPLETED.value);
+		orderService.saveOrUpdate(order);
+		return SUCCESS;
+	}
+	
 	@RequestMapping(value = "/view/uncomplete", method = RequestMethod.GET)
 	@ResponseBody
 	public List<Map<String, Object>> queryUnCompletedOrders(HttpServletRequest request) {
