@@ -26,6 +26,7 @@ public class OrderController extends BaseController {
 	private IOrderService orderService;
 
 	@RequestMapping("/delete/{id}")
+	@ResponseBody
 	public String delete(@PathVariable Long id) {
 		orderService.delete(id);
 		return SUCCESS;

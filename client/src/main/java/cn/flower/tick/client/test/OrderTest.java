@@ -19,6 +19,16 @@ import cn.flower.tick.client.util.HttpClientUtil;
  * @Date 2014年12月9日 下午9:24:00
  */
 public class OrderTest {
+	
+	@Test
+	public void delete() {
+		String url = HttpClientUtil.HOST + "/order/delete/13";
+		Map<String, String> params = new HashMap<String, String>();
+		Header header = HttpClientUtil.getDefaultHeader();
+		String msg = HttpClientUtil.sendPostRequest(url, params, header);
+		System.out.println(msg);
+	}
+	
 	@Test
 	public void pay(){
 		String url = HttpClientUtil.HOST + "/order/pay/12";
