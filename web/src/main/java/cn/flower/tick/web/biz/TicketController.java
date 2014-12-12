@@ -63,9 +63,7 @@ public class TicketController extends BaseController {
 		Map<String, Object> map = new HashMap<String, Object>();
 		if (seat != null) {
 			Ticket ticket = new Ticket();
-			Passenger passenger = new Passenger();
-			passenger.setId(passengerId);
-			ticket.setPassenger(passenger);
+			ticket.setPassenger(getPassenger(passengerId));
 			ticket.setPrice(getPrice(trainId, seatTypeId));
 			ticket.setSeat(seat);
 			ticket.setSerialCode(UUID.randomUUID().toString());
@@ -80,6 +78,12 @@ public class TicketController extends BaseController {
 			map.put("msg", "余票不足");
 		}
 		return map;
+	}
+
+	private Passenger getPassenger(Long passengerId) {
+		Passenger passenger = new Passenger();
+		passenger.setId(passengerId);
+		return passenger;
 	}
 
 	private Order crateOrder(User user) {
