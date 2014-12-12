@@ -43,7 +43,7 @@ public class tick_remain extends Common_Interface {
 
 	JLabel imagelabe, lablefrom, lableto, datelab;
 	JButton checkbt;
-	
+
 	JXDatePicker date;
 	Date nowdate = new Date();
 
@@ -54,20 +54,18 @@ public class tick_remain extends Common_Interface {
 	String tick_from;
 	String tick_to;
 	Date tick_date;
-	
+
 	tick_remain() {
 		// Common_Interface ci=new Common_Interface();
-		
+
 		contentPane = this.getContentPane();
 		jp = new JPanel();
 		jp.setLayout(null);
 		add_Label();
 		add_button();
-		
-		
 
 		contentPane.add(jp, BorderLayout.CENTER);
-		//contentPane.add(jscrollpane, BorderLayout.SOUTH);
+		// contentPane.add(jscrollpane, BorderLayout.SOUTH);
 		this.setVisible(true);
 	}
 
@@ -89,11 +87,12 @@ public class tick_remain extends Common_Interface {
 					// box2.removeAllItems();
 					return;
 				} else {
-					
+
 					SimpleDateFormat fort = new SimpleDateFormat("yyyy-MM-dd");
 					String getdate = fort.format(date.getDate());
-					new tick_choice((String)from.getSelectedItem(), (String)to.getSelectedItem(),getdate);
-					
+					new tick_choice((String) from.getSelectedItem(),
+							(String) to.getSelectedItem(), getdate);
+
 				}
 			}
 		});
@@ -101,7 +100,7 @@ public class tick_remain extends Common_Interface {
 	}
 
 	public void add_Label() {
-		
+
 		ImageIcon image = new ImageIcon("image/tick_choice.png");
 		imagelabe = new JLabel(image);
 		JLabel j1 = new JLabel("余票查询");
@@ -122,14 +121,14 @@ public class tick_remain extends Common_Interface {
 		lableto.setFont(new Font("宋体", Font.BOLD, 24));
 		datelab.setFont(new Font("宋体", Font.BOLD, 24));
 
-		imagelabe.setBounds(0,0,1000,100);
+		imagelabe.setBounds(0, 0, 1000, 100);
 		datelab.setBounds(190, 240, 80, 40);
 		lablefrom.setBounds(337, 240, 80, 40);
 		lableto.setBounds(458, 240, 80, 40);
 		from.setBounds(340, 310, 80, 40);
 		to.setBounds(460, 310, 80, 40);
 		date.setBounds(160, 310, 140, 40);
-		
+
 		jp.add(imagelabe);
 		jp.add(j1);
 
@@ -142,7 +141,6 @@ public class tick_remain extends Common_Interface {
 
 	}
 
-	
 	public static void main(String args[]) {
 
 		new tick_remain();

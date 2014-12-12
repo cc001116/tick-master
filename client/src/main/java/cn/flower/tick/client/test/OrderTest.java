@@ -25,6 +25,7 @@ public class OrderTest {
 		System.out.println(msg);
 		JSONArray array = JSON.parseArray(msg);
 		for(int i = 0; i < array.size(); i++) {
+			System.out.println("********************");
 			JSONObject obj = array.getJSONObject(i);
 			System.out.print(obj.get("id").toString()+"  ");
 			System.out.print(obj.get("serialCode").toString()+"  ");
@@ -35,6 +36,7 @@ public class OrderTest {
 			System.out.print(tick.get("startStation").toString()+"  ");
 			System.out.print(tick.get("passenger").toString()+"  ");
 			System.out.print(tick.get("seatNo").toString()+"  ");
+			System.out.println("********************");
 
 
 			System.out.println();

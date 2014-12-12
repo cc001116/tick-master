@@ -98,7 +98,7 @@ public class UserLogIn extends JFrame {
 	}
 
 	public void btnsub_ActionEvent(ActionEvent e) {
-
+		
 		final String name = txtName.getText().trim();
 		final String pwd = String.valueOf(pwdPwd.getPassword()).trim();
 

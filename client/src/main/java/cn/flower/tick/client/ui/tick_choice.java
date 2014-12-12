@@ -68,7 +68,6 @@ public class tick_choice extends Common_Interface{
 		panel.add(combox);
 		panel.add(okbt);
 		
-//		JFrame frame = new JFrame();
 		Object[][] datas;
 
 		String uri = HttpClientUtil.HOST + "/ticket/view/unsold/" + from
@@ -189,13 +188,13 @@ public class tick_choice extends Common_Interface{
 					JOptionPane.showMessageDialog(null, "选择错误，请重新选择！");
 				}
 			}
+			
 		});
 		
 		jscrollpane=new JScrollPane(table);
 		contentPane.add(panel, BorderLayout.CENTER);
 		contentPane.add(jscrollpane, BorderLayout.SOUTH);
 		this.setVisible(true);
-
 	}
 
 
