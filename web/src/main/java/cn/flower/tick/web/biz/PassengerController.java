@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import cn.flower.tick.model.biz.Passenger;
-import cn.flower.tick.model.util.PassengerType;
+import cn.flower.tick.model.enums.PassengerType;
 import cn.flower.tick.service.IPassengerService;
 import cn.flower.tick.web.base.BaseController;
 
@@ -46,7 +46,8 @@ public class PassengerController extends BaseController {
 	@RequestMapping("/view/list")
 	@ResponseBody
 	public List<Passenger> showAllPassengers(HttpServletRequest request) {
-		return passengerService.showAll(getSessionUser(request));
+		List<Passenger> ps =  passengerService.showAll(getSessionUser(request));
+		return ps;
 	}
 
 	@RequestMapping("/update/{id}")

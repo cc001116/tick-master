@@ -16,8 +16,8 @@ import org.springframework.transaction.annotation.Transactional;
 import cn.flower.tick.model.biz.Order;
 import cn.flower.tick.model.biz.Passenger;
 import cn.flower.tick.model.biz.Ticket;
+import cn.flower.tick.model.enums.OrderState;
 import cn.flower.tick.model.system.User;
-import cn.flower.tick.model.util.OrderState;
 import cn.flower.tick.persist.IOrderDao;
 import cn.flower.tick.service.IOrderService;
 import cn.flower.tick.util.DateUtils;
@@ -43,8 +43,7 @@ public class OrderServiceImpl implements IOrderService {
 
 	@Override
 	public Order query(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+		return this.orderDao.findObjectById(id);
 	}
 
 	@Override

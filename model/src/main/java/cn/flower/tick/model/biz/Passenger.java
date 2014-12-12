@@ -28,7 +28,7 @@ public class Passenger extends BaseModel{
 	private String idCard;
 	private String phone;
 	
-	@ManyToOne(targetEntity = User.class)
+	@ManyToOne(targetEntity = User.class, fetch = FetchType.LAZY)
 	private User createUser;
 	private Date createDate;
 	private Integer status;

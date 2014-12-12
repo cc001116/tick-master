@@ -20,9 +20,11 @@ public class PassengerTest {
 	public void savePassenger() {
 		String url = HttpClientUtil.HOST + "/passenger/save";
 		Map<String, String> params = new HashMap<String, String>();
+
 		params.put("name", "test");
 		params.put("idCard", "1");
 		params.put("phone", "1231233");
+
 		Header header = HttpClientUtil.getDefaultHeader();
 		String msg = HttpClientUtil.sendPostRequest(url, params, header);
 		System.out.println(msg);

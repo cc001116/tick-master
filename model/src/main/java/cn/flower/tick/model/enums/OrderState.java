@@ -1,4 +1,4 @@
-package cn.flower.tick.model.util;
+package cn.flower.tick.model.enums;
 
 public enum OrderState {
 	UNCOMPLETE(1),
