@@ -32,8 +32,6 @@ public class Passenger extends BaseModel{
 	private User createUser;
 	private Date createDate;
 	private Integer status;
-	@OneToMany(mappedBy = "passenger" ,cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-	private Set<Ticket> tickets = new HashSet<Ticket>();
 	
 	@Column(nullable = false)
 	public String getName() {
@@ -75,12 +73,6 @@ public class Passenger extends BaseModel{
 	}
 	public void setCreateDate(Date createDate) {
 		this.createDate = createDate;
-	}
-	public Set<Ticket> getTickets() {
-		return tickets;
-	}
-	public void setTickets(Set<Ticket> tickets) {
-		this.tickets = tickets;
 	}
 	
 	

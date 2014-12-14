@@ -12,6 +12,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.serializer.SerializerFeature;
+import com.alibaba.fastjson.serializer.SimplePropertyPreFilter;
+
 import cn.flower.tick.model.biz.Passenger;
 import cn.flower.tick.model.enums.PassengerType;
 import cn.flower.tick.service.IPassengerService;
@@ -26,7 +30,7 @@ public class PassengerController extends BaseController {
 
 	@RequestMapping("/save")
 	@ResponseBody
-	public String save(HttpServletRequest request, 
+	public String save(HttpServletRequest request,
 			@RequestParam(value = "name", required = true) String name,
 			@RequestParam(value = "idCard", required = true) String idCard,
 			@RequestParam(value = "phone", required = false) String phone,
@@ -35,19 +39,24 @@ public class PassengerController extends BaseController {
 		passenger.setName(name);
 		passenger.setIdCard(idCard);
 		passenger.setPhone(phone);
-		if(status == null) status = PassengerType.ORDINARY.value;
+		if (status == null)
+			status = PassengerType.ORDINARY.value;
 		passenger.setStatus(status);
 		passenger.setCreateDate(new Date());
 		passenger.setCreateUser(getSessionUser(request));
 		passengerService.save(passenger);
 		return SUCCESS;
 	}
-	
+
 	@RequestMapping("/view/list")
 	@ResponseBody
-	public List<Passenger> showAllPassengers(HttpServletRequest request) {
-		List<Passenger> ps =  passengerService.showAll(getSessionUser(request));
-		return ps;
+	public String showAllPassengers(HttpServletRequest request) {
+		List<Passenger> ps = passengerService.showAll(getSessionUser(request));
+		SimplePropertyPreFilter filter = new SimplePropertyPreFilter(
+				Passenger.class, "id", "name", "status");
+		String json = JSON.toJSONString(ps, filter, new SerializerFeature[0]);
+		System.out.println(json);
+		return json;
 	}
 
 	@RequestMapping("/update/{id}")

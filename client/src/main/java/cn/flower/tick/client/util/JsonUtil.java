@@ -5,12 +5,18 @@ import java.util.List;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 
 public class JsonUtil {
 	public static String getValue(String text, String key) {
 		String value = JSON.parseObject(text).getString(key);
 		return value;
 	}
+	
+	public static JSONArray parse(String text) {
+		return JSON.parseArray(text);
+	}
+
 	
 	// new Object[]{"K10" , "北京" , "河南",233,"12.5","卧铺","2014-05-12",""}
 	public static void showTrainInfo(String msg) {

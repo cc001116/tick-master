@@ -31,7 +31,7 @@ public class TicketServiceImpl implements ITicketService{
 
 	@Override
 	public Set<Ticket> query(Passenger passenger) {
-		return passenger.getTickets();
+		return null;
 	}
 
 	@Override
