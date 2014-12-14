@@ -35,10 +35,7 @@ public class UserTest {
 		map.put("password", "chen");
 		String msg = HttpClientUtil.sendPostRequest(uri, map, null);
 		System.out.println(msg);
-		String lastUsername = PropertiesUtil.getValue("username");
 		long currentTime = System.currentTimeMillis();
-		String lastTime = PropertiesUtil.getValue("loginTime");
-		long lastLoginTime = Long.parseLong(lastTime);
 
 		/**
 		 * 不是同一用户登录或超时重写session

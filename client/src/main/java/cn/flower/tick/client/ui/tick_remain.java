@@ -83,15 +83,16 @@ public class tick_remain extends Common_Interface {
 				if (from.getSelectedItem().equals(to.getSelectedItem())) {
 
 					JOptionPane.showMessageDialog(null, "始发站和站点站是同一站，无效！");
-					// box1.removeAllItems();
-					// box2.removeAllItems();
+					
 					return;
 				} else {
 
+					
 					SimpleDateFormat fort = new SimpleDateFormat("yyyy-MM-dd");
 					String getdate = fort.format(date.getDate());
 					new tick_choice((String) from.getSelectedItem(),
 							(String) to.getSelectedItem(), getdate);
+					dispose();
 
 				}
 			}

@@ -9,7 +9,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -106,7 +108,7 @@ public class tick_finsh implements ActionListener {
 		ImageIcon image = new ImageIcon("image/tick_choice.png");
 		JLabel img = new JLabel(image);
 
-		img.setBounds(0, 0, 800, 100);
+		img.setBounds(0, 0, 1000, 100);
 
 		table = new JTable(defaultModel);
 		TableColumnModel columnModel = table.getColumnModel();
@@ -114,28 +116,23 @@ public class tick_finsh implements ActionListener {
 		column1.setMinWidth(0);
 		column1.setMaxWidth(0);
 
-		TableColumn column2 = columnModel.getColumn(0);
-
-		// column1.setMaxWidth(0);
 		table.setPreferredScrollableViewportSize(new Dimension(853, 637));
 		table.setFillsViewportHeight(true);
 		JScrollPane scrollPane = new JScrollPane(table);
 		JPanel panel = new JPanel();
 
-		
-		
-		
-
-		
 		JButton okbt = new JButton("退订车票");
+	
+		//panel.add(img);
 		panel.add(okbt);
 		panel.add(okbt);
+		
 
 		okbt.addActionListener(this);
 
 		Container container = frame.getContentPane();
-		container.add(panel, BorderLayout.NORTH);
-		container.add(scrollPane, BorderLayout.CENTER);
+		container.add(panel, BorderLayout.CENTER);
+		container.add(scrollPane, BorderLayout.SOUTH);
 		frame.setTitle("已完成订单管理");
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
 		Dimension screensize = toolkit.getScreenSize();
@@ -166,10 +163,27 @@ public class tick_finsh implements ActionListener {
 
 			if (row >= 0) {
 
+				Object tickid =table.getValueAt(table.getSelectedRow(), 0);
+				
+				String id = tickid.toString();
+				System.out.println("选择退票的车票id为："+id);
 				JOptionPane.showConfirmDialog(null, "确定退订这一张火车票!");
-				defaultModel.removeRow(selectrow);
+				
+				String url = HttpClientUtil.HOST + "/order/delete/"+id;
+				Map<String, String> params = new HashMap<String, String>();
+				Header header = HttpClientUtil.getDefaultHeader();
+				String msg = HttpClientUtil.sendPostRequest(url, params, header);
+				System.out.println(msg);
+				
+				if(msg.contains("success")){
+					
+					defaultModel.removeRow(selectrow);
+					JOptionPane.showMessageDialog(null, "退订车票成功");
+				}
+				
 				defaultModel.setRowCount(row);
-
+				
+				
 			}
 		}
 

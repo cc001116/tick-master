@@ -5,6 +5,7 @@ import java.awt.Component;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Frame;
 import java.awt.Label;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -49,8 +50,8 @@ public class tick_choice extends Common_Interface{
 	JLabel imagelab,titlelab;
 	JButton okbt;
 	
-	tick_choice(String from, String to,  final String date) {
-		
+	tick_choice(String from, String to, final String date) {
+	
 		String seat[] = {"座位类型","硬座","软座","硬卧","软卧"};
 		combox = new JComboBox(seat);
 		contentPane=this.getContentPane();
@@ -115,7 +116,11 @@ public class tick_choice extends Common_Interface{
 		Object[] columnTitle = { "type1", "列车号", "开车时间", "type2", "座位", "票价",
 				"余票", "type3", "座位", "票价", "余票", "type4", "座位", "票价", "余票","选择"};
 		
-		
+		if(datas.length == 0){
+			
+			JOptionPane.showMessageDialog(null, "您查询的没有车票，请重新查询！");
+			new tick_remain();
+		}
 		
 		table = new JTable(datas, columnTitle);
 		TableColumnModel columnModel = table.getColumnModel();        
@@ -183,6 +188,8 @@ public class tick_choice extends Common_Interface{
 					String msg = HttpClientUtil.sendPostRequest(url, params, header);
 					System.out.println(msg);
 					JOptionPane.showMessageDialog(null, "订单生成，请支付！");
+					new tick_no_finsh();
+					dispose();
 				}else{
 					
 					JOptionPane.showMessageDialog(null, "选择错误，请重新选择！");

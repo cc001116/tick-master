@@ -20,6 +20,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import cn.flower.tick.client.util.HttpClientUtil;
+import cn.flower.tick.client.util.JsonUtil;
 import cn.flower.tick.client.util.PropertiesUtil;
 
 public class UserLogIn extends JFrame {
@@ -58,8 +59,8 @@ public class UserLogIn extends JFrame {
 		this.setLocation(screenWidth - width / 2, screenHeight - height / 2);
 		this.setTitle("用户登录");// 设置框架标题
 		this.pnluser.setLayout(null);// 设置面板布局管理
-		//this.pnluser.setBackground(Color.cyan);// 设置面板背景颜色
-		
+		// this.pnluser.setBackground(Color.cyan);// 设置面板背景颜色
+
 		this.lbluserLogIn.setText("用户登录");// 设置标签标题
 		this.lbluserLogIn.setFont(new Font("宋体", Font.BOLD | Font.ITALIC, 14));// 设置标签字体
 		this.lbluserLogIn.setForeground(Color.RED);// 设置标签字体颜色
@@ -98,7 +99,7 @@ public class UserLogIn extends JFrame {
 	}
 
 	public void btnsub_ActionEvent(ActionEvent e) {
-		
+
 		final String name = txtName.getText().trim();
 		final String pwd = String.valueOf(pwdPwd.getPassword()).trim();
 
@@ -111,8 +112,7 @@ public class UserLogIn extends JFrame {
 					JOptionPane.ERROR_MESSAGE);
 			return;
 		}
-		
-	
+
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
@@ -120,6 +120,12 @@ public class UserLogIn extends JFrame {
 				Map<String, String> map = new HashMap<String, String>();
 				map.put("password", pwd);
 				String msg = HttpClientUtil.sendPostRequest(uri, map, null);
+
+				long currentTime = System.currentTimeMillis();
+
+				String js = JsonUtil.getValue(msg, "JSESSIONID");
+				PropertiesUtil.storePropertiesFile(js,
+						String.valueOf(currentTime), name);
 				if (msg.contains("success")) {
 					UserLogIn.this.dispose();
 					new tick_operation();
@@ -132,10 +138,7 @@ public class UserLogIn extends JFrame {
 				}
 			}
 		}).start();
-		
-		
 
-		
 	}
 
 	public void btnreset_ActionEvent(ActionEvent e) {

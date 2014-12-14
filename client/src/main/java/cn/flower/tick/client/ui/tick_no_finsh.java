@@ -9,7 +9,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -163,9 +165,18 @@ public class tick_no_finsh implements ActionListener {
 		
 		if(e.getActionCommand().equals("支付订单")){
 			JOptionPane.showConfirmDialog(null, "确定支付这一张火车票!");
-			
+			Object id = table.getValueAt(table.getSelectedRow(), 0);
+			String tickid = id.toString();
+			String url = HttpClientUtil.HOST + "/order/pay/"+tickid;
+			Map<String, String> params = new HashMap<String, String>();
+			Header header = HttpClientUtil.getDefaultHeader();
+			String msg = HttpClientUtil.sendPostRequest(url, params, header);
+			System.out.println(msg);
 			int selectrow = table.getSelectedRow();
-			defaultModel.removeRow(selectrow);
+			if(msg.contains("success")){
+				defaultModel.removeRow(selectrow);
+			}
+			
 			JOptionPane.showMessageDialog(null, "支付成功!");
 		}
 		if(e.getActionCommand().equals("删除订单")){
@@ -175,9 +186,22 @@ public class tick_no_finsh implements ActionListener {
 			
 			if(row >= 0){
 				
-				JOptionPane.showConfirmDialog(null, "确定删除这一张火车票!");		
-				defaultModel.removeRow(selectrow);
+				JOptionPane.showConfirmDialog(null, "确定删除这一张火车票!");	
+				
+				Object id = table.getValueAt(table.getSelectedRow(), 0);
+				String tickid = id.toString();
+				String url = HttpClientUtil.HOST + "/order/pay/"+tickid;
+				Map<String, String> params = new HashMap<String, String>();
+				Header header = HttpClientUtil.getDefaultHeader();
+				String msg = HttpClientUtil.sendPostRequest(url, params, header);
+				System.out.println(msg);
+				
+				if(msg.contains("success")){
+					defaultModel.removeRow(selectrow);
+				}
+				
 				defaultModel.setRowCount(row);
+				JOptionPane.showMessageDialog(null, "订单删除成功！");
 						
 			}
 		}

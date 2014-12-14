@@ -22,7 +22,7 @@ public class OrderTest {
 	
 	@Test
 	public void delete() {
-		String url = HttpClientUtil.HOST + "/order/delete/13";
+		String url = HttpClientUtil.HOST + "/order/delete/31";
 		Map<String, String> params = new HashMap<String, String>();
 		Header header = HttpClientUtil.getDefaultHeader();
 		String msg = HttpClientUtil.sendPostRequest(url, params, header);
