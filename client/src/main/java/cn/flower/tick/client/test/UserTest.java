@@ -39,12 +39,16 @@ public class UserTest {
 		long currentTime = System.currentTimeMillis();
 		String lastTime = PropertiesUtil.getValue("loginTime");
 		long lastLoginTime = Long.parseLong(lastTime);
-		String js = JsonUtil.getValue(msg, "JSESSIONID");
-		PropertiesUtil.storePropertiesFile(js, String.valueOf(currentTime),
-				username);
-		System.out.println(js);
 
+		/**
+		 * 不是同一用户登录或超时重写session
+		 */
+		 
+			String js = JsonUtil.getValue(msg, "JSESSIONID");
+			PropertiesUtil.storePropertiesFile(js, String.valueOf(currentTime), username);
+			System.out.println(js);
 	}
+
 
 	@Test
 	public void modifyPassword() {

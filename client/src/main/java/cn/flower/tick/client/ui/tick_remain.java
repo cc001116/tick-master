@@ -7,6 +7,8 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -39,31 +41,31 @@ public class tick_remain extends Common_Interface {
 	Container contentPane;
 	JCheckBox jcb;
 
-	JLabel lablefrom, lableto, datelab;
+	JLabel imagelabe, lablefrom, lableto, datelab;
 	JButton checkbt;
-	
+
 	JXDatePicker date;
 	Date nowdate = new Date();
 
-	String city[] = { "北京", "驻马店", "南阳", "商丘" };
+	String city[] = { "北京", "驻马店", "南阳", "周口" };
 
 	JComboBox from = new JComboBox(city);
 	JComboBox to = new JComboBox(city);
 	String tick_from;
 	String tick_to;
+	Date tick_date;
 
 	tick_remain() {
 		// Common_Interface ci=new Common_Interface();
+
 		contentPane = this.getContentPane();
 		jp = new JPanel();
 		jp.setLayout(null);
-
-		add_button();
 		add_Label();
-		
+		add_button();
 
 		contentPane.add(jp, BorderLayout.CENTER);
-		//contentPane.add(jscrollpane, BorderLayout.SOUTH);
+		// contentPane.add(jscrollpane, BorderLayout.SOUTH);
 		this.setVisible(true);
 	}
 
@@ -72,7 +74,7 @@ public class tick_remain extends Common_Interface {
 
 		JButton jb = new JButton("确定");
 		jb.setFont(new Font("宋体", Font.BOLD, 24));
-		jb.setBounds(700, 100, 100, 40);
+		jb.setBounds(700, 310, 130, 40);
 		jb.addActionListener(new ActionListener() {
 
 			@Override
@@ -86,7 +88,11 @@ public class tick_remain extends Common_Interface {
 					return;
 				} else {
 
-					new tick_choice((String)from.getSelectedItem(), (String)to.getSelectedItem());
+					SimpleDateFormat fort = new SimpleDateFormat("yyyy-MM-dd");
+					String getdate = fort.format(date.getDate());
+					new tick_choice((String) from.getSelectedItem(),
+							(String) to.getSelectedItem(), getdate);
+
 				}
 			}
 		});
@@ -94,6 +100,9 @@ public class tick_remain extends Common_Interface {
 	}
 
 	public void add_Label() {
+
+		ImageIcon image = new ImageIcon("image/tick_choice.png");
+		imagelabe = new JLabel(image);
 		JLabel j1 = new JLabel("余票查询");
 
 		datelab = new JLabel("日期");
@@ -102,22 +111,25 @@ public class tick_remain extends Common_Interface {
 
 		j1.setFont(new Font("宋体", Font.BOLD, 24));
 
-		j1.setBounds(20, 0, 400, 100);
+		j1.setBounds(0, 210, 400, 100);
 
 		date = new JXDatePicker(nowdate);
-		date.setFormats("yyyy-MM-d");
+		date.setFormats("yyyy-MM-dd");
 		date.setLocale(Locale.CHINA);
 
 		lablefrom.setFont(new Font("宋体", Font.BOLD, 24));
 		lableto.setFont(new Font("宋体", Font.BOLD, 24));
 		datelab.setFont(new Font("宋体", Font.BOLD, 24));
 
-		datelab.setBounds(170, 30, 80, 40);
-		lablefrom.setBounds(320, 30, 80, 40);
-		lableto.setBounds(440, 30, 80, 40);
-		from.setBounds(320, 100, 80, 40);
-		to.setBounds(440, 100, 80, 40);
-		date.setBounds(140, 100, 140, 40);
+		imagelabe.setBounds(0, 0, 1000, 100);
+		datelab.setBounds(190, 240, 80, 40);
+		lablefrom.setBounds(337, 240, 80, 40);
+		lableto.setBounds(458, 240, 80, 40);
+		from.setBounds(340, 310, 80, 40);
+		to.setBounds(460, 310, 80, 40);
+		date.setBounds(160, 310, 140, 40);
+
+		jp.add(imagelabe);
 		jp.add(j1);
 
 		jp.add(lablefrom);
@@ -129,7 +141,6 @@ public class tick_remain extends Common_Interface {
 
 	}
 
-	
 	public static void main(String args[]) {
 
 		new tick_remain();

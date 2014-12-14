@@ -33,9 +33,9 @@ public class TicketTest {
 	public void tickSave() {
 		String url = HttpClientUtil.HOST + "/ticket/save";
 		Map<String, String> params = new HashMap<String, String>();
-		params.put("trainId", "4");
+		params.put("trainId", "6");
 		params.put("seatTypeId", "1");
-		params.put("passengerId", "1");
+		params.put("passengerId", "2");
 		params.put("date", "2014-12-09");
 		Header header = HttpClientUtil.getDefaultHeader();
 		String msg = HttpClientUtil.sendPostRequest(url, params, header);
