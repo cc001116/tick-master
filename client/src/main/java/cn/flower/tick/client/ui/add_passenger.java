@@ -126,7 +126,7 @@ public class add_passenger{
 			JOptionPane.showMessageDialog(null, "编号不能为空", "错误",
 					JOptionPane.ERROR_MESSAGE);
 			return;
-		}else if (phone.length() < 11) {
+		}else if (phone.length() < 11 || phone.length() > 11) {
 			 
 			JOptionPane.showMessageDialog(null, "电话输入不正确", "电话输入不正确",
 					JOptionPane.INFORMATION_MESSAGE);

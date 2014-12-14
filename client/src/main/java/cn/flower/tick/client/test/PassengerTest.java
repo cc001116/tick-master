@@ -6,6 +6,10 @@ import java.util.Map;
 import org.apache.http.Header;
 import org.junit.Test;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
+
 import cn.flower.tick.client.util.HttpClientUtil;
 /**
  * 
@@ -34,7 +38,16 @@ public class PassengerTest {
 	public void showAllPassenger() {
 		String url = HttpClientUtil.HOST +"/passenger/view/list";
 		String msg = HttpClientUtil.sendGetRequest(url, HttpClientUtil.getDefaultHeader());
+		JSONArray array = JSON.parseArray(msg);
 		
-		System.out.println(msg);
+		for(int i = 0; i < array.size(); i++){
+			
+			JSONObject obj = array.getJSONObject(i);
+			System.out.print(obj.get("id").toString()+"  ");
+			System.out.print(obj.get("name").toString()+"  ");
+			System.out.print(obj.get("status").toString()+"  ");
+		}
+		
+		//System.out.println(msg);
 	}
 }
