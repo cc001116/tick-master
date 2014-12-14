@@ -51,6 +51,7 @@ public class HttpClientUtil {
 			try {
 				if (response != null)
 					response.close();
+					httpClient.close();
 			} catch (IOException e) {
 				System.out.println(e.getMessage());
 			}

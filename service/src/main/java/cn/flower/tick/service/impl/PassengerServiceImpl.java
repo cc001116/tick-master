@@ -45,11 +45,18 @@ public class PassengerServiceImpl implements IPassengerService {
 		return dao.findObjectByHql(hql, name);
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Object> showAllBySql(User user) {
+		String sql = "SELECT * FROM passenger p WHERE p.create_user = ?; ";
+		return dao.findCollectionBySql(sql, user.getId());
+	}
+
 	@Override
 	public List<Passenger> showAll(User user) {
 		String hql = "WHERE o.createUser.id = ?";
-		List<Passenger> ps = (List<Passenger>) dao.findCollectionByHql(hql, new Object[]{user.getId()}, null);
-		return ps;
+		return (List<Passenger>) dao.findCollectionByHql(hql, new Object[]{ user.getId()}, null);
 	}
+	
 
 }

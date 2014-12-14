@@ -11,5 +11,6 @@ public interface IPassengerService {
 	public void update(Passenger passenger);
 	public void delete(Serializable id);
 	public Passenger query(String name);
-	public List<Passenger> showAll(User user) ;
+	public List<Object> showAllBySql(User user) ;
+	public List<Passenger> showAll(User user); 
 }
