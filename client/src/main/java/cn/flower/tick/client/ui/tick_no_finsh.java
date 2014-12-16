@@ -45,7 +45,11 @@ public class tick_no_finsh implements ActionListener {
 		String uri = HttpClientUtil.HOST + "/order/view/uncomplete";
 		Header header = HttpClientUtil.getDefaultHeader();
 		String msg = HttpClientUtil.sendGetRequest(uri, header);
-		System.out.println(msg);
+		if(msg.length() == 2){
+			JOptionPane.showMessageDialog(null, "不存在未完成的订单！");
+			return;
+		}
+		System.out.println("&&&***"+msg+"MSE长度："+msg.length());
 		JSONArray array = JSON.parseArray(msg);
 		List<Object[]> list = new ArrayList<Object[]>();
 		for (int i = 0; i < array.size(); i++) {

@@ -43,10 +43,17 @@ public class tick_finsh implements ActionListener {
 	public tick_finsh() {
 
 		JFrame frame = new JFrame();
-		String uri = HttpClientUtil.HOST + "/order/view/uncomplete";
+		String uri = HttpClientUtil.HOST + "/order/view/completed";
 		Header header = HttpClientUtil.getDefaultHeader();
 		String msg = HttpClientUtil.sendGetRequest(uri, header);
-		System.out.println(msg);
+		
+		if(msg.length() == 2){
+			
+			JOptionPane.showMessageDialog(null, "不存在已完成订单！");
+			return;
+		}
+
+		System.out.println("*****"+msg+"*****"+"changdu:  "+msg.length());
 		JSONArray array = JSON.parseArray(msg);
 		List<Object[]> list = new ArrayList<Object[]>();
 		for (int i = 0; i < array.size(); i++) {
@@ -103,6 +110,7 @@ public class tick_finsh implements ActionListener {
 
 		Object[] columnTitle = { "type1", "订单号", "始发站", "终点站", "订单日期", "座位",
 				"座号", "乘客", "票价" };
+		
 		defaultModel = new DefaultTableModel(datas, columnTitle);
 
 		ImageIcon image = new ImageIcon("image/tick_choice.png");

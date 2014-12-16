@@ -141,12 +141,12 @@ public class add_passenger{
 			params.put("idCard", id);
 			params.put("phone", phone);
 			
-			txtName.setText("");
-			textid.setText("");
-			textphone.setText("");
 			Header header = HttpClientUtil.getDefaultHeader();
 			String msg = HttpClientUtil.sendPostRequest(url, params, header);
 			System.out.println(msg);
+			txtName.setText("");
+			textid.setText("");
+			textphone.setText("");
 		}
 		
 		
