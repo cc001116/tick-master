@@ -420,6 +420,7 @@
 					<version>2.7</version>
 					<configuration>
 						<encoding>UTF-8</encoding>
+						<includeEmptyDirs>true</includeEmptyDirs>
 					</configuration>
 				</plugin>
 
