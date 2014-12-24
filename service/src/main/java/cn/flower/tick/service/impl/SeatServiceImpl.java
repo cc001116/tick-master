@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 import cn.flower.tick.model.biz.Seat;
 import cn.flower.tick.persist.ISeatDao;
 import cn.flower.tick.service.ISeatService;
+import cn.flower.tick.util.DateUtils;
 
 @Service
 @Transactional(readOnly = true)
@@ -95,9 +96,11 @@ public class SeatServiceImpl implements ISeatService {
 	
 	@SuppressWarnings("rawtypes")
 	private List queryUnsoldSeat(String fromStation, String toStation, String startDate) {
+		
+		
 		String sql = "SELECT train.id trainId, train.number, departure_time, seat_type.id typeId, seat_type.type_name, price , count(*) "
 				+ "FROM (SELECT * FROM seat where seat.id NOT IN "
-				+ "(SELECT seat from ticket where ticket.start_date like ?)) unsold, room, seat_type, price, train "
+				+ "(SELECT seat from ticket where ticket.start_date like '%"+startDate+"%')) unsold, room, seat_type, price, train "
 				+ "WHERE unsold.room = room.id "
 				+ "AND seat_type.id = room.seat_type "
 				+ "AND room.train = price.train "
@@ -106,7 +109,7 @@ public class SeatServiceImpl implements ISeatService {
 				+ "AND price.arrival_station = ? " 
 				+ "GROUP BY room.train, room.seat_type "
 				+ "ORDER BY departure_time, seat_type.id";
-		return this.seatDao.findCollectionBySql(sql, startDate, fromStation, toStation);
+		return this.seatDao.findCollectionBySql(sql, fromStation, toStation);
 	}
 
 	@SuppressWarnings("rawtypes")
