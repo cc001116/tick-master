@@ -219,6 +219,7 @@ public class tick_choice extends Common_Interface {
 						seatType = 11;
 					if (combox.getSelectedItem().equals("软卧"))
 						seatType = 15;
+					
 					String data = date;
 					//String passengername = comboxpass.getSelectedItem().toString();
 					int pid = comboxpass.getSelectedIndex() - 1;

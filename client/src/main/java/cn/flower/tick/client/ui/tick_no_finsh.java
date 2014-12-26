@@ -194,7 +194,7 @@ public class tick_no_finsh implements ActionListener {
 				
 				Object id = table.getValueAt(table.getSelectedRow(), 0);
 				String tickid = id.toString();
-				String url = HttpClientUtil.HOST + "/order/pay/"+tickid;
+				String url = HttpClientUtil.HOST + "/order/delete/"+tickid;
 				Map<String, String> params = new HashMap<String, String>();
 				Header header = HttpClientUtil.getDefaultHeader();
 				String msg = HttpClientUtil.sendPostRequest(url, params, header);
