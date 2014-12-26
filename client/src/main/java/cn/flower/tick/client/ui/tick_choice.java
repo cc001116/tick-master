@@ -62,10 +62,10 @@ public class tick_choice extends Common_Interface {
 		String url = HttpClientUtil.HOST + "/passenger/view/list";
 		String msg1 = HttpClientUtil.sendGetRequest(url,
 				HttpClientUtil.getDefaultHeader());
-		if(msg1.length() == 2){
-			JOptionPane.showMessageDialog(null, "车票信息不存在！！");
-			return;
-		}
+//		if(msg1.length() == 2){
+//			JOptionPane.showMessageDialog(null, "车票信息不存在！！");
+//			return;
+//		}
 		System.out.println("*****"+msg1+" MSE长度： "+msg1.length()+"******");
 		JSONArray array1 = JSON.parseArray(msg1);
 		Object passname[] = null;

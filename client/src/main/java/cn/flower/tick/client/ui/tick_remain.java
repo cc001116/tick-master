@@ -47,9 +47,9 @@ public class tick_remain extends Common_Interface {
 	JXDatePicker date;
 	Date nowdate = new Date();
 
-	String city[] = { "北京", "驻马店", "南阳", "周口" };
-
-	JComboBox from = new JComboBox(city);
+	String city[] = { "邵阳", "驻马店", "南阳", "周口" };
+	String cityfrom[] = { "北京"};
+	JComboBox from = new JComboBox(cityfrom);
 	JComboBox to = new JComboBox(city);
 	String tick_from;
 	String tick_to;

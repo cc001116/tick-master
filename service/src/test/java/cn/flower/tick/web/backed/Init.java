@@ -43,7 +43,7 @@ public class Init {
 	private IPriceService priceService;
 	
 	String startingStation = "北京";
-	String[] destinations = { "周口", "南阳", "驻马店", "绍阳" };
+	String[] destinations = { "周口", "南阳", "驻马店", "邵阳" };
 
 	@Test
 	public void init() {
